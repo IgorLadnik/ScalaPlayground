@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16efc125-ba4e-4209-b2e4-686318978b98" name="Default Changelist" comment="" />
+    <list default="true" id="16efc125-ba4e-4209-b2e4-686318978b98" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/Messaging/Messaging.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/ScalaPlayground.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ScalaPlayground.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$ca474568dcfe5b0f90d4.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/$global/update/$global/streams/update_cache_2.12/output" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/$global/update/$global/streams/update_cache_2.12/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/compileIncremental/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/compileIncremental/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Extension/Helpers.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Extension/Helpers.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Simple/Hello.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.example/scalaplayground$sources/0.1.0-SNAPSHOT/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.example/scalaplayground$sources/0.1.0-SNAPSHOT/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.example/scalaplayground$sources/0.1.0-SNAPSHOT/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.example/scalaplayground$sources/0.1.0-SNAPSHOT/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.example/scalaplayground_2.12/0.1.0-SNAPSHOT/resolved.xml.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.example/scalaplayground_2.12/0.1.0-SNAPSHOT/resolved.xml.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.example/scalaplayground_2.12/0.1.0-SNAPSHOT/resolved.xml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/com.example/scalaplayground_2.12/0.1.0-SNAPSHOT/resolved.xml.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground$sources-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-compile-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-compile-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-compile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-compile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-optional.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-optional.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-provided.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-provided.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-runtime-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-runtime-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-runtime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-runtime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-scala-tool.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-scala-tool.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-test-internal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-test-internal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.12/resolution-cache/reports/com.example-scalaplayground_2.12-test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/update_cache_2.12/inputs" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/update_cache_2.12/inputs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/update_cache_2.12/output" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/update/$global/streams/update_cache_2.12/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/$global/updateClassifiers/$global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/$global/updateClassifiers/$global/streams/out" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,11 +60,21 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>aooly</find>
       <find>apply</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
@@ -40,6 +91,7 @@
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="simple" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -65,11 +117,11 @@
   </component>
   <component name="RunManager">
     <configuration name="Hello" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="ScalaPlayground.Hello" />
+      <option name="MAIN_CLASS_NAME" value="Main.Main" />
       <module name="ScalaPlayground" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Simple.*" />
+          <option name="PATTERN" value="Main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -110,7 +162,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$/build.sbt" value="4007942412" />
+        <entry key="$PROJECT_DIR$/build.sbt" value="4207770927" />
         <entry key="$PROJECT_DIR$/project/Dependencies.scala" value="3187829316" />
         <entry key="$PROJECT_DIR$/project/build.properties" value="1396028727" />
         <entry key="$PROJECT_DIR$/project/plugins.sbt" value="3441400446" />
@@ -158,6 +210,8 @@
       <workItem from="1569571368409" duration="463000" />
       <workItem from="1569571852061" duration="175000" />
       <workItem from="1569572257939" duration="241000" />
+      <workItem from="1569573665293" duration="13464000" />
+      <workItem from="1569595346590" duration="307000" />
     </task>
     <servers />
   </component>
@@ -173,12 +227,26 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="Application">
         <watch expression="message" />
         <watch expression="socket.getInputStream.readAllBytes()" />
         <watch expression="socket" />
+        <watch expression="typeName" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
@@ -186,19 +254,5 @@
     <SUITE FILE_PATH="coverage/Simple$Hello.ic" NAME="Hello Coverage Results" MODIFIED="1564058870396" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Simple.*</FILTER>
     </SUITE>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="watch">
-      <expression>
-        <expression-string>socket</expression-string>
-        <language-id>Scala</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>message</expression-string>
-        <language-id>Scala</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
 </project>

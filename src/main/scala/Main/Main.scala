@@ -1,6 +1,5 @@
-package ScalaPlayground
+package Main
 
-import Extension._
 import Extension.Helpers._
 import Placement._
 import Q.Qsample
@@ -9,16 +8,26 @@ import Threading._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}
 
-object Hello {
+object Main {
   def main(args: Array[String]) {
     // Implicit
     5 seconds
     val t: Unit = 5 times println("HI")
 
-    val sendBox = new SendBox()
-    sendBox ! new MessageToSendBox("MSG")
-    sendBox ! "a string"
-    sendBox ! 139.5
+    val messageBox = new Messaging.MessageBox()
+    messageBox ! new Messaging.Message("MSG")
+    messageBox ! "a string"
+    messageBox ! 139.5
+
+    // Also Future
+    (messageBox ? 1511).onComplete {
+      case Success(num) => println(s"Response on ? : Success of Future: ${num}")
+      case Failure(e) => println(s"Failure: ${e}")
+    }
+
+    // Function
+    val fn = (n: Int) => n * 10
+    val va = fn(3)
 
     // apply / unapply ------
     val qsample = Qsample("aa", "bb")
@@ -89,3 +98,4 @@ object Hello {
     new Point(x, y)
   }
 }
+

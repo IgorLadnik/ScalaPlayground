@@ -415,14 +415,14 @@
 [debug] == resolving dependencies com.example#scalaplayground$sources;0.1.0-SNAPSHOT->org.scala-lang#scala-reflect;2.12.6 [scala-tool->master]
 [debug] 	resolved ivy file produced in cache
 [debug] :: downloading artifacts ::
-[debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.12;1.0.6!scala-xml_2.12.jar(src)
-[debug] 	[NOT REQUIRED] org.scala-lang#scala-library;2.12.6!scala-library.jar(src)
 [debug] 	[NOT REQUIRED] org.scalatest#scalatest_2.12;3.0.5!scalatest_2.12.jar(src)
-[debug] 	[NOT REQUIRED] org.scala-lang#scala-reflect;2.12.6!scala-reflect.jar(src)
 [debug] 	[NOT REQUIRED] org.scalactic#scalactic_2.12;3.0.5!scalactic_2.12.jar(src)
+[debug] 	[NOT REQUIRED] org.scala-lang#scala-reflect;2.12.6!scala-reflect.jar(src)
 [debug] 	[NOT REQUIRED] org.scala-lang#scala-compiler;2.12.6!scala-compiler.jar(src)
 [debug] 	[NOT REQUIRED] jline#jline;2.14.6!jline.jar(src)
-[debug] :: resolution report :: resolve 65ms :: artifacts dl 6ms
+[debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.12;1.0.6!scala-xml_2.12.jar(src)
+[debug] 	[NOT REQUIRED] org.scala-lang#scala-library;2.12.6!scala-library.jar(src)
+[debug] :: resolution report :: resolve 297ms :: artifacts dl 16ms
 [debug] 	report for com.example#scalaplayground$sources;0.1.0-SNAPSHOT compile produced in C:\prj\_Scala\ScalaPlayground\target\scala-2.12\resolution-cache\reports\com.example-scalaplayground$sources-compile.xml
 [debug] 	report for com.example#scalaplayground$sources;0.1.0-SNAPSHOT runtime produced in C:\prj\_Scala\ScalaPlayground\target\scala-2.12\resolution-cache\reports\com.example-scalaplayground$sources-runtime.xml
 [debug] 	report for com.example#scalaplayground$sources;0.1.0-SNAPSHOT test produced in C:\prj\_Scala\ScalaPlayground\target\scala-2.12\resolution-cache\reports\com.example-scalaplayground$sources-test.xml
@@ -434,4 +434,4 @@
 [debug] 	report for com.example#scalaplayground$sources;0.1.0-SNAPSHOT plugin produced in C:\prj\_Scala\ScalaPlayground\target\scala-2.12\resolution-cache\reports\com.example-scalaplayground$sources-plugin.xml
 [debug] 	report for com.example#scalaplayground$sources;0.1.0-SNAPSHOT pom produced in C:\prj\_Scala\ScalaPlayground\target\scala-2.12\resolution-cache\reports\com.example-scalaplayground$sources-pom.xml
 [debug] 	report for com.example#scalaplayground$sources;0.1.0-SNAPSHOT scala-tool produced in C:\prj\_Scala\ScalaPlayground\target\scala-2.12\resolution-cache\reports\com.example-scalaplayground$sources-scala-tool.xml
-[debug] 	resolve done (65ms resolve - 6ms download)
+[debug] 	resolve done (297ms resolve - 16ms download)

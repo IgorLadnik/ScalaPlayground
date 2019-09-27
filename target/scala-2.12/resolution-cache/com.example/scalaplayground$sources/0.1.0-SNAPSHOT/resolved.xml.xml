@@ -4,7 +4,7 @@
 		module="scalaplayground$sources"
 		revision="0.1.0-SNAPSHOT"
 		status="integration"
-		publication="20190927111811"
+		publication="20190927174414"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>

@@ -1,9 +1,14 @@
 package Extension
 
 import java.util.concurrent.TimeUnit
+
+import scala.concurrent.Future
 import scala.concurrent.duration.Duration
 
 object Helpers {
+
+  import Messaging.MessageBox
+
   implicit class DurationInt(private val n: Int) {
     def seconds = {
       Duration(n.toLong, TimeUnit.SECONDS)
@@ -23,22 +28,11 @@ object Helpers {
     }
   }
 
-  implicit class SendMessage(b: SendBox) {
-    def !(m: MessageToSendBox) = b.send(m)
+  implicit class SendMessage(b: MessageBox) {
+    def ![A](m: Messaging.Message[A]) = b.send(m)
+    def ?[A](m: Messaging.Message[A]): Future[Messaging.Message[A]] = b.sendWithResponse(m)
   }
 
-  implicit def convertString2MessageToSendBox[A](a: A): MessageToSendBox = new MessageToSendBox(s"${a}")
-
-}
-
-class MessageToSendBox(content: String) {
-  override def toString(): String = {
-    s"This is message content: ${content}"
-  }
-}
-
-class SendBox() {
-  def send(m: MessageToSendBox) = {
-    println(s"${m}")
-  }
+  implicit def convertA2Message[A](a: A): Messaging.Message[A] = new Messaging.Message[A](a)
+  implicit def convertMessage2A[A](m: Messaging.Message[A]): A = m.content
 }
