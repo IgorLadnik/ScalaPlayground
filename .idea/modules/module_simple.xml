@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_simple" default="compile.module.simple">
+  <dirname property="module.simple.basedir" file="${ant.file.module_simple}"/>
+  
+  <property name="module.jdk.home.simple" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.simple" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.simple" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.simple" value="-encoding UTF-8 -source 11 -target 11 ${compiler.args}"/>
+  
+  <property name="simple.output.dir" value="${module.simple.basedir}/../../target/scala-2.12/classes"/>
+  <property name="simple.testoutput.dir" value="${module.simple.basedir}/../../target/scala-2.12/test-classes"/>
+  
+  <path id="simple.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="simple.module.production.classpath">
+    <path refid="${module.jdk.classpath.simple}"/>
+    <path refid="library.sbt:_org.scala-lang:scala-library:2.12.8:jar.classpath"/>
+  </path>
+  
+  <path id="simple.runtime.production.module.classpath">
+    <pathelement location="${simple.output.dir}"/>
+    <path refid="library.sbt:_org.scala-lang:scala-library:2.12.8:jar.classpath"/>
+  </path>
+  
+  <path id="simple.module.classpath">
+    <path refid="${module.jdk.classpath.simple}"/>
+    <pathelement location="${simple.output.dir}"/>
+    <path refid="library.sbt:_org.scala-lang:scala-library:2.12.8:jar.classpath"/>
+    <path refid="library.sbt:_org.scala-lang:scala-reflect:2.12.8:jar.classpath"/>
+    <path refid="library.sbt:_org.scala-lang.modules:scala-xml_2.12:1.0.6:jar.classpath"/>
+    <path refid="library.sbt:_org.scalactic:scalactic_2.12:3.0.5:jar.classpath"/>
+    <path refid="library.sbt:_org.scalatest:scalatest_2.12:3.0.5:jar.classpath"/>
+  </path>
+  
+  <path id="simple.runtime.module.classpath">
+    <pathelement location="${simple.testoutput.dir}"/>
+    <pathelement location="${simple.output.dir}"/>
+    <path refid="library.sbt:_org.scala-lang:scala-library:2.12.8:jar.classpath"/>
+    <path refid="library.sbt:_org.scala-lang:scala-reflect:2.12.8:jar.classpath"/>
+    <path refid="library.sbt:_org.scala-lang.modules:scala-xml_2.12:1.0.6:jar.classpath"/>
+    <path refid="library.sbt:_org.scalactic:scalactic_2.12:3.0.5:jar.classpath"/>
+    <path refid="library.sbt:_org.scalatest:scalatest_2.12:3.0.5:jar.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.simple">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.simple">
+    <patternset refid="excluded.from.module.simple"/>
+  </patternset>
+  
+  <path id="simple.module.sourcepath">
+    <dirset dir="${module.simple.basedir}/../../../Simple">
+      <include name="src/main/scala"/>
+    </dirset>
+  </path>
+  
+  <path id="simple.module.test.sourcepath">
+    <dirset dir="${module.simple.basedir}/../../../Simple">
+      <include name="src/test/scala"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.simple" depends="compile.module.simple.production,compile.module.simple.tests" description="Compile module Simple"/>
+  
+  <target name="compile.module.simple.production" depends="register.custom.compilers" description="Compile module Simple; production classes">
+    <mkdir dir="${simple.output.dir}"/>
+    <javac2 destdir="${simple.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.simple}/javac">
+      <compilerarg line="${compiler.args.simple}"/>
+      <bootclasspath refid="simple.module.bootclasspath"/>
+      <classpath refid="simple.module.production.classpath"/>
+      <src refid="simple.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.simple"/>
+    </javac2>
+    
+    <copy todir="${simple.output.dir}">
+      <fileset dir="${module.simple.basedir}/../../src/main/scala">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.simple.tests" depends="register.custom.compilers,compile.module.simple.production" description="compile module Simple; test classes" unless="skip.tests">
+    <mkdir dir="${simple.testoutput.dir}"/>
+    <javac2 destdir="${simple.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.simple}/javac">
+      <compilerarg line="${compiler.args.simple}"/>
+      <bootclasspath refid="simple.module.bootclasspath"/>
+      <classpath refid="simple.module.classpath"/>
+      <src refid="simple.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.simple"/>
+    </javac2>
+    
+    <copy todir="${simple.testoutput.dir}">
+      <fileset dir="${module.simple.basedir}/../../src/test/scala">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.simple" description="cleanup module">
+    <delete dir="${simple.output.dir}"/>
+    <delete dir="${simple.testoutput.dir}"/>
+  </target>
+</project>
