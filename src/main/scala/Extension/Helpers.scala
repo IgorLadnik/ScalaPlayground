@@ -29,8 +29,10 @@ object Helpers {
   }
 
   implicit class SendMessage(b: MessageBox) {
-    def ![A](m: Messaging.Message[A]) = b.send(m)
-    def ?[A](m: Messaging.Message[A]): Future[Messaging.Message[A]] = b.sendWithResponse(m)
+    import Messaging.Message
+
+    def ![A](m: Message[A]) = b.send(m)
+    def ?[A](m: Message[A]): Future[Message[A]] = b.sendWithResponse(m)
   }
 
   implicit def convertA2Message[A](a: A): Messaging.Message[A] = new Messaging.Message[A](a)

@@ -3,14 +3,15 @@ package Main
 import Extension.Helpers._
 import Placement._
 import Q.Qsample
-import Threading._
+import IdioticSocketsWithThreadPool.{NetworkClient, NetworkServer}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}
 
 object Main {
   def main(args: Array[String]) {
-    // Implicit
+
+    // Implicit =================================================================
     5 seconds
     val t: Unit = 5 times println("HI")
 
@@ -21,28 +22,27 @@ object Main {
 
     // Also Future
     (messageBox ? 1511).onComplete {
-      case Success(num) => println(s"Response on ? : Success of Future: ${num}")
+      case Success(msg) => println(s"Response on ? : Success of Future: ${msg}")
       case Failure(e) => println(s"Failure: ${e}")
     }
 
-    // Function
+    // Function ==================================================================
     val fn = (n: Int) => n * 10
     val va = fn(3)
 
-    // apply / unapply ------
+    // apply / unapply ===========================================================
     val qsample = Qsample("aa", "bb")
     val Qsample(name) = "pp@qq"
 
     println("qsample: " + qsample)
     println("name: " + name)
-    // ----------------------
 
-    // Operators overloading
+    // Operators overloading =====================================================
     val ptSum = new Point(2, 3) + new Point(3, 7)
     println(s"ptSum = ${ptSum}")
     println(ptSum ? "prefix")
 
-    // Option
+    // Option ====================================================================
     val opStr: Option[String] = None //Some("Ga!") //None
     println(s"Print the option: ${opStr.getOrElse("option placeholder")}")
 
@@ -52,7 +52,7 @@ object Main {
     // Move to a new location
     loc.move(10, 10, 5)
 
-    // Function, Companion Object
+    // Function, Companion Object ================================================
     gps(x = 1, y = 1, p = /*new*/ Location(10, 20, 15))
 
     val zpt = new Location(10, 2, 7)
@@ -63,7 +63,7 @@ object Main {
     for (x <- list)
       println(x)
 
-    // Futures test =================================================================================
+    // Futures test ==============================================================
     // Future call 1
     val testFutures = new TestFutures()
     testFutures.firstLengthyFunc("Ga1?").onComplete {
@@ -80,19 +80,21 @@ object Main {
 
     Thread.sleep(10000)
 
-    // Threading ===================================================================================
-    val network = new NetworkService(11511, 5)
-    network.run()
+    // Idiotic Sockets with Thread Pool ===========================================
+    val port = 11511
+    val numOfThreadInPool = 3
+    new NetworkServer(port, numOfThreadInPool).run
+    new NetworkClient("localhost", port, numOfThreadInPool).run
   }
 
-  // Call function by name
+  // Call function by name ========================================================
   def gps(x: Int, y: Int, p: => Point) {
     p.move(x, y)
     println("x = " + x)
     println("y = " + y)
   }
 
-  // "val" in stead of "def"
+  // "val" in stead of "def" ======================================================
   val getPoint = (x: Int, y: Int, p: Point) => {
     println(s"POINT${p}")
     new Point(x, y)
