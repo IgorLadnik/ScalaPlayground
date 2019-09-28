@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16efc125-ba4e-4209-b2e4-686318978b98" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/Threading/IdioticSocketsWithThreadPool.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Extension/Helpers.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Extension/Helpers.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Threading/Network.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Threading/IdioticSocketsWithThreadPool.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/IdioticSocketsWithThreadPool/IdioticSocketsWithThreadPool.scala" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +168,7 @@
       <workItem from="1569572257939" duration="241000" />
       <workItem from="1569573665293" duration="13464000" />
       <workItem from="1569595346590" duration="307000" />
-      <workItem from="1569601260135" duration="12153000" />
+      <workItem from="1569601260135" duration="12464000" />
     </task>
     <servers />
   </component>
