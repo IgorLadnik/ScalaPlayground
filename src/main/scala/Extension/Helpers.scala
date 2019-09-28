@@ -4,10 +4,9 @@ import java.util.concurrent.TimeUnit
 
 import scala.concurrent.Future
 import scala.concurrent.duration.Duration
+import Messaging.MessageBox
 
 object Helpers {
-
-  import Messaging.MessageBox
 
   implicit class DurationInt(private val n: Int) {
     def seconds = {
@@ -37,4 +36,8 @@ object Helpers {
 
   implicit def convertA2Message[A](a: A): Messaging.Message[A] = new Messaging.Message[A](a)
   implicit def convertMessage2A[A](m: Messaging.Message[A]): A = m.content
+
+  implicit object IntOrdering extends Ordering[Int] {
+    def compare(x: Int, y: Int): Boolean = x - y <= 0
+  }
 }

@@ -1,15 +1,15 @@
 package Main
 
+import DV.UrlParser.{StrExt, UrlInfoHolder}
 import Extension.Helpers._
+import Extension.MathInt
+import IdioticSocketsWithThreadPool.{NetworkClient, NetworkServer}
 import Placement._
 import Q.Qsample
-import IdioticSocketsWithThreadPool.{NetworkClient, NetworkServer}
 import ReadWriteFile.FileHelper
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}
-
-import DV.UrlParser.{StrExt, UrlInfoHolder}
 
 object Main {
   def main(args: Array[String]) {
@@ -28,6 +28,10 @@ object Main {
       case Success(msg) => println(s"Response on ? : Success of Future: ${msg}")
       case Failure(e) => println(s"Failure: ${e}")
     }
+
+    val a = 9
+    val b = 7
+    println(s"Minimum of ${a} and ${b}: ${MathInt.min(a, b)}")
 
     // Function ==================================================================
     val fn = (n: Int) => n * 10
