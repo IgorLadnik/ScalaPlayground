@@ -1,0 +1,29 @@
+How to Generate Fat Stand-Alone JAR File?
+
+1. In file "build.sbt" add "assemblyJarName in assembly" and "assemblyOutputPath in assembly" as follows:
+
+import Dependencies._
+
+lazy val root = (project in file("."))
+  .settings(
+    name := "NestedUrlParser_Scala",
+    libraryDependencies ++= Seq (
+        scalaTest % Test
+    ),
+    test in assembly := {},
+    mainClass in assembly := Some("Main"),
+    assemblyJarName in assembly := "NestedUrlParser_Scala.jar",
+    assemblyOutputPath in assembly := new File("jar/NestedUrlParser_Scala.jar"),
+  )
+
+2. Run SBT tool - either from IntelliJ SBT Console window or from console command line with file "sbt.cmd"
+   "sbt.cmd":
+	java -Dsbt.log.noformat=true -Djline.terminal=jline.UnsupportedTerminal -Xmx512M -XX:MaxPermSize=256M -jar C:\Users\Igorl\.IntelliJIdea2019.1\system\sbt\sbt-launch.jar
+		
+	and insert SBT command "assembly".
+	
+	Result JAR will be generated as "jar/NestedUrlParser_Scala.jar"
+	
+3. The JAR file may by run from console with the following command:
+   C:\prj\NestedUrlParser_Scala\jar>java -jar NestedUrlParser_Scala.jar
+ 

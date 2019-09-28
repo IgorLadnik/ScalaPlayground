@@ -1,0 +1,44 @@
+How to Refer from a Project to a JAR File?
+
+1. Make a JAR Package - Lib Project (in our case DV.UrlParser)
+	1.1 In SBT Console window below click on triangle icom in the left - StartSBT (Ctrl-F5).
+		SBT atarts. We get prompt
+		sbt:DV.UrlParser>
+		
+	1.2 To create "slim" package we should run SBT "package" command:
+		sbt:DV.UrlParser> package
+		This will produce in folder
+		C:\prj\DV.UrlParser\target\scala-2.12
+		directories "classes", "resolution-cache" and file "dv-urlparser_2.12-0.1.0-SNAPSHOT.jar".
+		The latter is a "slim" JAR file of a library to be referred on.
+		
+	Alternatively, from console command line we 
+	1.1 Run command file "sbt.cmd" starting SBT.
+		"sbt.cmd":
+		java -Dsbt.log.noformat=true -Djline.terminal=jline.UnsupportedTerminal -Xmx512M -XX:MaxPermSize=256M -jar C:\Users\Igorl\.IntelliJIdea2019.1\system\sbt\sbt-launch.jar
+		
+	1.2 Insert command 
+		sbt:DV.UrlParser> package
+		from console with the same result as above.
+		
+2.	Refer to the JAR File.
+    Our project "NestedUrlParser_Scala" refers to the newly generated JAR library file.
+	
+	2.1 Copy file "dv-urlparser_2.12-0.1.0-SNAPSHOT.jar" to directory 
+	C:\prj\NestedUrlParser_Scala\lib
+	and rename it to "DV.UrlParser.jar".
+	
+	2.2 Open menu
+	    File -> Project Structure... in dialog box in the left panel -> Project Settings -> Modules
+		Then in the right panel in tab "Dependencies" in Export click "+" and in pop-up menu "1 JARs or directories..."
+		and select ./lib/DV.UrlParser.jar file giving scope "Provided" to it.
+		
+	2.3 Open menu
+	    Run -> Edit Configurations... 
+		and check in "Include dependencies with "Provided" scope".
+		
+		
+		
+		
+	
+	

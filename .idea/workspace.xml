@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16efc125-ba4e-4209-b2e4-686318978b98" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Threading/IdioticSocketsWithThreadPool.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/IdioticSocketsWithThreadPool/IdioticSocketsWithThreadPool.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/ReadWriteFile/FileHelper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/ScalaPlayground.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/ScalaPlayground.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +45,7 @@
   </component>
   <component name="ProjectId" id="1RMnxXxeEuCF190XM3E4w5ai4X7" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
@@ -49,11 +53,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/DV.UrlParser.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -72,6 +76,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Hello" type="Application" factoryName="Application" temporary="true">
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
       <option name="MAIN_CLASS_NAME" value="Main.Main" />
       <module name="ScalaPlayground" />
       <extension name="coverage">
@@ -168,7 +173,7 @@
       <workItem from="1569572257939" duration="241000" />
       <workItem from="1569573665293" duration="13464000" />
       <workItem from="1569595346590" duration="307000" />
-      <workItem from="1569601260135" duration="12464000" />
+      <workItem from="1569601260135" duration="14091000" />
     </task>
     <servers />
   </component>
