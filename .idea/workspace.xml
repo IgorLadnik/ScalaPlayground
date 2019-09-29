@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="16efc125-ba4e-4209-b2e4-686318978b98" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ApplyUnapply/ApplyUnapply.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ApplyUnapply/ApplyUnapply.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +53,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/DV.UrlParser.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HackerRank" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -174,7 +176,7 @@
       <workItem from="1569601260135" duration="14729000" />
       <workItem from="1569680209989" duration="3138000" />
       <workItem from="1569684992216" duration="216000" />
-      <workItem from="1569686479584" duration="1311000" />
+      <workItem from="1569686479584" duration="7861000" />
     </task>
     <servers />
   </component>
@@ -210,6 +212,8 @@
         <watch expression="socket.getInputStream.readAllBytes()" />
         <watch expression="socket" />
         <watch expression="typeName" language="JAVA" />
+        <watch expression="arr0" />
+        <watch expression="arrContent" language="Scala" />
       </configuration>
     </watches-manager>
   </component>

@@ -1,6 +1,6 @@
-package Q
+package ApplyUnapply
 
-object Qsample {
+object ApplyUnapplyObj {
   def apply(user: String, domain: String) = user + "@" + domain
 
   // The extraction method (mandatory)

@@ -5,7 +5,7 @@ import Extension.Helpers._
 import Extension.MathInt
 import IdioticSocketsWithThreadPool.{NetworkClient, NetworkServer}
 import Placement._
-import Q.Qsample
+import ApplyUnapply._
 import ReadWriteFile.FileHelper
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -13,6 +13,9 @@ import scala.util.{Failure, Success}
 
 object Main {
   def main(args: Array[String]) {
+
+    // Collections =============================================================
+    collectionsExamples
 
     // Implicit =================================================================
     5 seconds
@@ -38,10 +41,10 @@ object Main {
     val va = fn(3)
 
     // apply / unapply ===========================================================
-    val qsample = Qsample("aa", "bb")
-    val Qsample(name) = "pp@qq"
+    val au = ApplyUnapplyObj("aa", "bb")
+    val ApplyUnapplyObj(name) = "pp@qq"
 
-    println("qsample: " + qsample)
+    println("qsample: " + au)
     println("name: " + name)
 
     // Operators overloading =====================================================
@@ -127,6 +130,35 @@ object Main {
     }
 
     FileHelper.outputToFile(test)
+  }
+
+  def collectionsExamples = {
+    val arr = Array(32, 4, -3, 7, 101, 21)
+    val arr0 = arr.filter(a => 10 < a && a < 100)  // Where
+
+    class SomeClass(val id: Int, val content: String, val sn: Int)
+
+    val arrSomeClass = Array(
+      new SomeClass(32, "thirty-two", 1),
+      new SomeClass(4, "four", 2),
+      new SomeClass(-3, "minus-three", 3),
+      new SomeClass(7, "seven", 4),
+      new SomeClass(101, "one-hundred-and-one", 5),
+      new SomeClass(21, "twenty-one", 6)
+    )
+
+    println("map")
+    val arrContent: Seq[Int] = arrSomeClass.filter(a => 10 < a.id && a.id < 100).map(_.sn)  // Where & Select
+    for (s <- arrContent)
+      println(s)
+
+    println("flatMap")
+    val arrFlatMap: Seq[Char] = arrSomeClass.filter(a => 10 < a.id && a.id < 100).flatMap(_.content)  // Where & Select
+    //val arrFlatMap = arrSomeClass.filter(a => 10 < a.id && a.id < 100).flatMap(_.sn.toString)  // Where & Select
+    for (s <- arrFlatMap)
+      println(s)
+
+    println("End of Collections")
   }
 }
 
