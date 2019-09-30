@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16efc125-ba4e-4209-b2e4-686318978b98" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/Variance/Variance.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/ApplyUnapply/ApplyUnapply.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ApplyUnapply/ApplyUnapply.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,7 +53,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HackerRank" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -122,7 +122,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="6278745589276" />
+        <entry key="$PROJECT_DIR$" value="6279051747300" />
         <entry key="$PROJECT_DIR$/build.sbt" value="4207770927" />
         <entry key="$PROJECT_DIR$/project/Dependencies.scala" value="3187829316" />
         <entry key="$PROJECT_DIR$/project/build.properties" value="1396028727" />
@@ -177,6 +177,7 @@
       <workItem from="1569680209989" duration="3138000" />
       <workItem from="1569684992216" duration="216000" />
       <workItem from="1569686479584" duration="7861000" />
+      <workItem from="1569763006663" duration="11131000" />
     </task>
     <servers />
   </component>

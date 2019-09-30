@@ -1,19 +1,19 @@
 package Main
 
+import ApplyUnapply._
 import DV.UrlParser.{StrExt, UrlInfoHolder}
 import Extension.Helpers._
 import Extension.MathInt
 import IdioticSocketsWithThreadPool.{NetworkClient, NetworkServer}
 import Placement._
-import ApplyUnapply._
 import ReadWriteFile.FileHelper
+import Variance._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}
 
 object Main {
   def main(args: Array[String]) {
-
     // Collections =============================================================
     collectionsExamples
 
@@ -90,7 +90,7 @@ object Main {
 
     Thread.sleep(10000)
 
-    // Idiotic Sockets with Thread Pool ===========================================
+    // Idiotic Sockets with Thread Pool ==========================================
     val port = 11511
     val numOfThreadInPool = 3
     new NetworkServer(port, numOfThreadInPool).run
@@ -98,6 +98,21 @@ object Main {
 
     // Parse Nested URL - Use Precompiled JAR ====================================
     parseUrl("url_input.txt")
+
+    // Variance ==================================================================
+    val father = new Father
+    val child = new Child
+
+    // Co
+    val personWrapperCoFather: PersonWrapperCo[Father] = new PersonWrapperCo[Father](father)
+    val personWrapperCoChild: PersonWrapperCo[Father] = new PersonWrapperCo[Child](child)
+
+    val fatherContainerCo = new PersonWrapperContainerCo(personWrapperCoFather)
+    val childContainerCo = new PersonWrapperContainerCo(personWrapperCoChild)
+
+    // Contra
+    val personWrapperContraFather: PersonWrapperContra[Child] = new PersonWrapperContra[Father](father)
+    val personWrapperContraChild: PersonWrapperContra[Child] = new PersonWrapperContra[Child](child)
   }
 
   // Call function by name ========================================================
