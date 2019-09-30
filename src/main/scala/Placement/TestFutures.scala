@@ -11,6 +11,7 @@ class TestFutures {
     println("1st lengthy operation completed")
     11
   }
+
   def secondLengthyFunc(num: Int): Future[Int] = Future {
     // assume some long running database operation
     println("2nd lengthy operation started...")

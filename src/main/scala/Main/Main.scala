@@ -8,12 +8,29 @@ import IdioticSocketsWithThreadPool.{NetworkClient, NetworkServer}
 import Placement._
 import ReadWriteFile.FileHelper
 import Variance._
+import Kafka._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}
 
 object Main {
   def main(args: Array[String]) {
+
+    // Kafka ===================================================================
+    val bootstrapServers = "localhost:9092"
+    val groupId = "consumer-group"
+    val topic = "quick-start"
+    val partition = 0
+    val offset = 0
+    val consumer = new Consumer(bootstrapServers, topic, groupId, partition, offset)
+    val producer = new Producer(bootstrapServers, topic, groupId, partition, offset)
+
+    consumer.startConsuming(topic, (key, value) => println(s"From Kafka: ${key} -> ${value}"))
+
+    producer.send("key1", "value1")
+    producer.send("key2", "value2")
+    producer.close
+
     // Collections =============================================================
     collectionsExamples
 
