@@ -1,7 +1,12 @@
 package Kafka
 
 import java.util.Properties
+import java.io.ByteArrayOutputStream
+import org.apache.avro.generic.GenericDatumWriter
+import org.apache.avro.io.{BinaryEncoder, EncoderFactory}
+import org.apache.avro.generic.GenericRecord
 import org.apache.kafka.clients.producer._
+import org.apache.kafka.common.serialization.{ByteArraySerializer, StringSerializer}
 
 class Producer(val bootstrapServers: String,
                val topic: String,
@@ -9,9 +14,9 @@ class Producer(val bootstrapServers: String,
                val partition: Int,
                val offset: Int) {
 
-  def send(key: String, value: String) = {
+  def send(key: String, genericRecord: GenericRecord) = {
     try {
-      producer.send(new ProducerRecord[String, String](topic, key, value))
+      producer.send(new ProducerRecord[String, Array[Byte]](topic, key, serialize(genericRecord)))
     } catch {
       case e: Exception => e.printStackTrace
       close
@@ -20,10 +25,26 @@ class Producer(val bootstrapServers: String,
 
   def close = producer.close
 
-  val props = new Properties()
+  private[Producer] def serialize(genericRecord: GenericRecord): Array[Byte] = {
+    // Serialize generic record into byte array
+    //val writer = new SpecificDatumWriter[GenericRecord](genericRecord.getSchema)
+    val writer = new GenericDatumWriter[GenericRecord](genericRecord.getSchema)
+    val out = new ByteArrayOutputStream
+    val encoder: BinaryEncoder = EncoderFactory.get.binaryEncoder(out, null)
+    writer.write(genericRecord, encoder)
+    encoder.flush
+    out.close
+    out.toByteArray
+  }
+
+  //Read avro schema file
+  //val schema: Schema = new Parser().parse(Source.fromURL(getClass.getResource("/schema.avsc")).mkString) //1
+
+  private[Producer] val props = new Properties()
   props.put("bootstrap.servers", bootstrapServers)
-  props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
-  props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
-  val producer = new KafkaProducer[String, String](props)
+  props.put("key.serializer", classOf[StringSerializer].getCanonicalName)
+  props.put("value.serializer",classOf[ByteArraySerializer].getCanonicalName)
+
+  private[Producer] val producer = new KafkaProducer[String, Array[Byte]](props)
 }
 

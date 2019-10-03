@@ -1,4 +1,4 @@
-[error] C:\prj\_Scala\ScalaPlayground\project\Dependencies.scala:5:3: not found: value libraryDependencies
-[error]   libraryDependencies += "org.apache.kafka" %% "kafka" % "2.1.0"
-[error]   ^
+[error] C:\prj\_Scala\ScalaPlayground\project\Dependencies.scala:7:79: ';' expected but ',' found.
+[error]   lazy val avroSerializer = "io.confluent" % "kafka-avro-serializer" % "3.2.1",
+[error]                                                                               ^
 [error] one error found

@@ -5,16 +5,19 @@ import DV.UrlParser.{StrExt, UrlInfoHolder}
 import Extension.Helpers._
 import Extension.MathInt
 import IdioticSocketsWithThreadPool.{NetworkClient, NetworkServer}
+import Kafka._
 import Placement._
 import ReadWriteFile.FileHelper
 import Variance._
-import Kafka._
+import org.apache.avro.Schema
+import org.apache.avro.generic.GenericData
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}
 
 object Main {
   def main(args: Array[String]) {
+    import org.apache.avro.generic.GenericData.Record
 
     // Kafka ===================================================================
     val bootstrapServers = "localhost:9092"
@@ -22,13 +25,43 @@ object Main {
     val topic = "quick-start"
     val partition = 0
     val offset = 0
-    val consumer = new Consumer(bootstrapServers, topic, groupId, partition, offset)
+
+    val strSchema = FileHelper.readUrlFromFile("schema.json")
+    if (StrExt.isNullOrEmpty(strSchema))
+      return null
+    val schema: Schema = new Schema.Parser().parse(strSchema)
+
+    val consumer = new Consumer(schema, bootstrapServers, topic, groupId, partition, offset)
     val producer = new Producer(bootstrapServers, topic, groupId, partition, offset)
 
-    consumer.startConsuming(topic, (key, value) => println(s"From Kafka: ${key} -> ${value}"))
+    consumer.startConsuming(topic, (key, value) =>
+      println(s"From Kafka: ${key} -> ${value.get("ID")} ${value.get("CreationTime")}"))
 
-    producer.send("key1", "value1")
-    producer.send("key2", "value2")
+    // Create avro generic record object
+    val genericUser: Record = new GenericData.Record(schema)
+
+    //Put data in that generic record and send it to Kafka
+    {
+      val ticks: Long = 1331
+      genericUser.put("SEQUENCE", 1)
+      genericUser.put("ID", 1)
+      genericUser.put("CategoryID", 1)
+      genericUser.put("YouTubeCategoryTypeID", 1)
+      genericUser.put("CreationTime", ticks) //Calendar.getInstance.getTime)
+
+      producer.send("key1", genericUser)
+    }
+    {
+      val ticks: Long = 1551
+      genericUser.put("SEQUENCE", 2)
+      genericUser.put("ID", 2)
+      genericUser.put("CategoryID", 2)
+      genericUser.put("YouTubeCategoryTypeID", 2)
+      genericUser.put("CreationTime", ticks)
+
+      producer.send("key2", genericUser)
+    }
+
     producer.close
 
     // Collections =============================================================
