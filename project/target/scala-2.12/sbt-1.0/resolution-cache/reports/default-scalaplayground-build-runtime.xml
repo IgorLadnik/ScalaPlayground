@@ -9,27 +9,27 @@
 		extra-sbtVersion="1.0"
 		conf="runtime"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
-		date="20191001174622"/>
+		date="20191003195028"/>
 	<dependencies>
 		<module organisation="com.julianpeeters" name="sbt-avrohugger">
-			<revision name="2.0.0-RC19" status="release" pubdate="20190903034609" resolver="public" artresolver="public" homepage="https://github.com/julianpeeters/sbt-avrohugger" extra-scalaVersion="2.12" extra-sbtVersion="1.0" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="23">
+			<revision name="2.0.0-RC19" status="release" pubdate="20190903034609" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/julianpeeters/sbt-avrohugger" extra-scalaVersion="2.12" extra-sbtVersion="1.0" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="23">
 				<license name="Apache 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
-				<metadata-artifact status="successful" details="" size="2692" time="386" location="C:\Users\Igorl\.ivy2\cache\scala_2.12\sbt_1.0\com.julianpeeters\sbt-avrohugger\ivy-2.0.0-RC19.xml" searched="true" original-local-location="C:\Users\Igorl\.ivy2\cache\scala_2.12\sbt_1.0\com.julianpeeters\sbt-avrohugger\ivy-2.0.0-RC19.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/julianpeeters/sbt-avrohugger_2.12_1.0/2.0.0-RC19/sbt-avrohugger-2.0.0-RC19.pom"/>
+				<metadata-artifact status="no" details="" size="3643" time="0" location="C:\Users\Igorl\.ivy2\cache\scala_2.12\sbt_1.0\com.julianpeeters\sbt-avrohugger\ivy-2.0.0-RC19.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/julianpeeters/sbt-avrohugger_2.12_1.0/2.0.0-RC19/sbt-avrohugger-2.0.0-RC19.pom"/>
 				<caller organisation="default" name="scalaplayground-build" conf="compile, runtime" rev="2.0.0-RC19" rev-constraint-default="2.0.0-RC19" rev-constraint-dynamic="2.0.0-RC19" callerrev="0.1.0-SNAPSHOT" extra-scalaVersion="2.12" extra-sbtVersion="1.0"/>
 				<artifacts>
-					<artifact name="sbt-avrohugger" type="jar" ext="jar" status="successful" details="" size="17469" time="765" location="C:\Users\Igorl\.ivy2\cache\scala_2.12\sbt_1.0\com.julianpeeters\sbt-avrohugger\jars\sbt-avrohugger-2.0.0-RC19.jar">
+					<artifact name="sbt-avrohugger" type="jar" ext="jar" status="no" details="" size="17469" time="0" location="C:\Users\Igorl\.ivy2\cache\scala_2.12\sbt_1.0\com.julianpeeters\sbt-avrohugger\jars\sbt-avrohugger-2.0.0-RC19.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/julianpeeters/sbt-avrohugger_2.12_1.0/2.0.0-RC19/sbt-avrohugger-2.0.0-RC19.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="com.julianpeeters" name="avrohugger-filesorter_2.12">
-			<revision name="1.0.0-RC19" status="release" pubdate="20190903034205" resolver="public" artresolver="public" homepage="https://github.com/julianpeeters/avrohugger" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="41">
+			<revision name="1.0.0-RC19" status="release" pubdate="20190903034205" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/julianpeeters/avrohugger" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="41">
 				<license name="Apache 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
-				<metadata-artifact status="successful" details="" size="2827" time="297" location="C:\Users\Igorl\.ivy2\cache\com.julianpeeters\avrohugger-filesorter_2.12\ivy-1.0.0-RC19.xml" searched="true" original-local-location="C:\Users\Igorl\.ivy2\cache\com.julianpeeters\avrohugger-filesorter_2.12\ivy-1.0.0-RC19.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/julianpeeters/avrohugger-filesorter_2.12/1.0.0-RC19/avrohugger-filesorter_2.12-1.0.0-RC19.pom"/>
+				<metadata-artifact status="no" details="" size="3744" time="0" location="C:\Users\Igorl\.ivy2\cache\com.julianpeeters\avrohugger-filesorter_2.12\ivy-1.0.0-RC19.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/julianpeeters/avrohugger-filesorter_2.12/1.0.0-RC19/avrohugger-filesorter_2.12-1.0.0-RC19.pom"/>
 				<caller organisation="com.julianpeeters" name="sbt-avrohugger" conf="default, compile, runtime, master" rev="1.0.0-RC19" rev-constraint-default="1.0.0-RC19" rev-constraint-dynamic="1.0.0-RC19" callerrev="2.0.0-RC19"/>
 				<artifacts>
-					<artifact name="avrohugger-filesorter_2.12" type="jar" ext="jar" status="successful" details="" size="19004" time="672" location="C:\Users\Igorl\.ivy2\cache\com.julianpeeters\avrohugger-filesorter_2.12\jars\avrohugger-filesorter_2.12-1.0.0-RC19.jar">
+					<artifact name="avrohugger-filesorter_2.12" type="jar" ext="jar" status="no" details="" size="19004" time="0" location="C:\Users\Igorl\.ivy2\cache\com.julianpeeters\avrohugger-filesorter_2.12\jars\avrohugger-filesorter_2.12-1.0.0-RC19.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/julianpeeters/avrohugger-filesorter_2.12/1.0.0-RC19/avrohugger-filesorter_2.12-1.0.0-RC19.jar"/>
 					</artifact>
 				</artifacts>
@@ -49,12 +49,12 @@
 			</revision>
 		</module>
 		<module organisation="com.julianpeeters" name="avrohugger-core_2.12">
-			<revision name="1.0.0-RC19" status="release" pubdate="20190903034217" resolver="public" artresolver="public" homepage="https://github.com/julianpeeters/avrohugger" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="24">
+			<revision name="1.0.0-RC19" status="release" pubdate="20190903034217" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/julianpeeters/avrohugger" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="24">
 				<license name="Apache 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
-				<metadata-artifact status="successful" details="" size="2813" time="296" location="C:\Users\Igorl\.ivy2\cache\com.julianpeeters\avrohugger-core_2.12\ivy-1.0.0-RC19.xml" searched="true" original-local-location="C:\Users\Igorl\.ivy2\cache\com.julianpeeters\avrohugger-core_2.12\ivy-1.0.0-RC19.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/julianpeeters/avrohugger-core_2.12/1.0.0-RC19/avrohugger-core_2.12-1.0.0-RC19.pom"/>
+				<metadata-artifact status="no" details="" size="3730" time="0" location="C:\Users\Igorl\.ivy2\cache\com.julianpeeters\avrohugger-core_2.12\ivy-1.0.0-RC19.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/julianpeeters/avrohugger-core_2.12/1.0.0-RC19/avrohugger-core_2.12-1.0.0-RC19.pom"/>
 				<caller organisation="com.julianpeeters" name="sbt-avrohugger" conf="default, compile, runtime, master" rev="1.0.0-RC19" rev-constraint-default="1.0.0-RC19" rev-constraint-dynamic="1.0.0-RC19" callerrev="2.0.0-RC19"/>
 				<artifacts>
-					<artifact name="avrohugger-core_2.12" type="jar" ext="jar" status="successful" details="" size="599327" time="782" location="C:\Users\Igorl\.ivy2\cache\com.julianpeeters\avrohugger-core_2.12\jars\avrohugger-core_2.12-1.0.0-RC19.jar">
+					<artifact name="avrohugger-core_2.12" type="jar" ext="jar" status="no" details="" size="599327" time="0" location="C:\Users\Igorl\.ivy2\cache\com.julianpeeters\avrohugger-core_2.12\jars\avrohugger-core_2.12-1.0.0-RC19.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/julianpeeters/avrohugger-core_2.12/1.0.0-RC19/avrohugger-core_2.12-1.0.0-RC19.jar"/>
 					</artifact>
 				</artifacts>
@@ -495,7 +495,7 @@
 			</revision>
 		</module>
 		<module organisation="org.scala-sbt" name="global-plugins">
-			<revision name="0.0" status="integration" pubdate="20191001174619" resolver="inter-project" artresolver="inter-project" extra-scalaVersion="2.12" extra-sbtVersion="1.0" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="0">
+			<revision name="0.0" status="integration" pubdate="20191003195024" resolver="inter-project" artresolver="inter-project" extra-scalaVersion="2.12" extra-sbtVersion="1.0" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="0">
 				<metadata-artifact status="failed" details="" size="0" time="0" searched="false"/>
 				<caller organisation="default" name="scalaplayground-build" conf="compile, runtime" rev="0.0" rev-constraint-default="0.0" rev-constraint-dynamic="0.0" callerrev="0.1.0-SNAPSHOT" extra-scalaVersion="2.12" extra-sbtVersion="1.0"/>
 				<artifacts>

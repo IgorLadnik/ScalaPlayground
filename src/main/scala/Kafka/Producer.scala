@@ -1,12 +1,13 @@
 package Kafka
 
-import java.util.Properties
 import java.io.ByteArrayOutputStream
-import org.apache.avro.generic.GenericDatumWriter
-import org.apache.avro.io.{BinaryEncoder, EncoderFactory}
+import java.util.Properties
+
 import org.apache.avro.generic.GenericRecord
+import org.apache.avro.io.{BinaryEncoder, EncoderFactory}
 import org.apache.kafka.clients.producer._
 import org.apache.kafka.common.serialization.{ByteArraySerializer, StringSerializer}
+import org.apache.avro.specific.SpecificDatumWriter
 
 class Producer(val bootstrapServers: String,
                val topic: String,
@@ -26,9 +27,10 @@ class Producer(val bootstrapServers: String,
   def close = producer.close
 
   private[Producer] def serialize(genericRecord: GenericRecord): Array[Byte] = {
+
     // Serialize generic record into byte array
-    //val writer = new SpecificDatumWriter[GenericRecord](genericRecord.getSchema)
-    val writer = new GenericDatumWriter[GenericRecord](genericRecord.getSchema)
+    val writer = new SpecificDatumWriter[GenericRecord](genericRecord.getSchema)
+    //val writer = new GenericDatumWriter[GenericRecord](genericRecord.getSchema)
     val out = new ByteArrayOutputStream
     val encoder: BinaryEncoder = EncoderFactory.get.binaryEncoder(out, null)
     writer.write(genericRecord, encoder)
@@ -43,7 +45,7 @@ class Producer(val bootstrapServers: String,
   private[Producer] val props = new Properties()
   props.put("bootstrap.servers", bootstrapServers)
   props.put("key.serializer", classOf[StringSerializer].getCanonicalName)
-  props.put("value.serializer",classOf[ByteArraySerializer].getCanonicalName)
+  props.put("value.serializer", classOf[ByteArraySerializer].getCanonicalName)
 
   private[Producer] val producer = new KafkaProducer[String, Array[Byte]](props)
 }

@@ -5,24 +5,25 @@ import DV.UrlParser.{StrExt, UrlInfoHolder}
 import Extension.Helpers._
 import Extension.MathInt
 import IdioticSocketsWithThreadPool.{NetworkClient, NetworkServer}
-import Kafka._
 import Placement._
 import ReadWriteFile.FileHelper
 import Variance._
 import org.apache.avro.Schema
 import org.apache.avro.generic.GenericData
+import org.apache.avro.generic.GenericData.Record
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}
 
+import Kafka.{Consumer, Producer}
+
 object Main {
   def main(args: Array[String]) {
-    import org.apache.avro.generic.GenericData.Record
 
     // Kafka ===================================================================
     val bootstrapServers = "localhost:9092"
-    val groupId = "consumer-group"
     val topic = "quick-start"
+    val groupId = "consumer-group"
     val partition = 0
     val offset = 0
 
@@ -63,6 +64,9 @@ object Main {
     }
 
     producer.close
+
+    println("Press <Enter> to continue...")
+    System.in.read
 
     // Collections =============================================================
     collectionsExamples

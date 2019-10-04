@@ -3,13 +3,13 @@
 [debug] 	removed:Set()
 [debug] 	added: Set()
 [debug] 	modified: Set(C:\prj\_Scala\ScalaPlayground\project\Dependencies.scala)
-[debug] Invalidated products: Set()
+[debug] Invalidated products: Set(C:\prj\_Scala\ScalaPlayground\project\target\scala-2.12\sbt-1.0\classes\Dependencies$.class, C:\prj\_Scala\ScalaPlayground\project\target\scala-2.12\sbt-1.0\classes\Dependencies.class)
 [debug] External API changes: API Changes: Set()
 [debug] Modified binary dependencies: Set()
 [debug] Initial directly invalidated classes: Set(Dependencies)
 [debug] 
 [debug] Sources indirectly invalidated by:
-[debug] 	product: Set()
+[debug] 	product: Set(C:\prj\_Scala\ScalaPlayground\project\Dependencies.scala)
 [debug] 	binary dep: Set()
 [debug] 	external source: Set()
 [debug] All sources are invalidated.
@@ -17,7 +17,7 @@
 [info] Compiling 1 Scala source to C:\prj\_Scala\ScalaPlayground\project\target\scala-2.12\sbt-1.0\classes ...
 [debug] Getting org.scala-sbt:compiler-bridge_2.12:1.2.5:compile for Scala 2.12.7
 [debug] Getting org.scala-sbt:compiler-bridge_2.12:1.2.5:compile for Scala 2.12.7
-[debug] [zinc] Running cached compiler 22489c51 for Scala compiler version 2.12.7
+[debug] [zinc] Running cached compiler 1569c998 for Scala compiler version 2.12.7
 [debug] [zinc] The Scala compiler is invoked with:
 [debug] 	-deprecation
 [debug] 	-bootclasspath
