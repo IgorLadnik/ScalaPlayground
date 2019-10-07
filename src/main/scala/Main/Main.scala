@@ -32,8 +32,11 @@ object Main {
       return null
     val schema: Schema = new Schema.Parser().parse(strSchema)
 
-    val consumer = new Consumer(schema, bootstrapServers, topic, groupId, partition, offset)
-    val producer = new Producer(bootstrapServers, topic, groupId, partition, offset)
+    val id = 322272
+    val version = 5
+
+    val consumer = new Consumer(schema, id, version, bootstrapServers, topic, groupId, partition, offset)
+    val producer = new Producer(schema, id, version, bootstrapServers, topic, groupId, partition, offset)
 
     consumer.startConsuming(topic, (key, value) =>
       println(s"From Kafka: ${key} -> ${value.get("ID")} ${value.get("CreationTime")}"))
@@ -43,7 +46,7 @@ object Main {
 
     //Put data in that generic record and send it to Kafka
     {
-      val ticks: Long = 1331
+      val ticks: Long = 1111
       genericUser.put("SEQUENCE", 1)
       genericUser.put("ID", 1)
       genericUser.put("CategoryID", 1)
@@ -53,7 +56,7 @@ object Main {
       producer.send("key1", genericUser)
     }
     {
-      val ticks: Long = 1551
+      val ticks: Long = 2222
       genericUser.put("SEQUENCE", 2)
       genericUser.put("ID", 2)
       genericUser.put("CategoryID", 2)
