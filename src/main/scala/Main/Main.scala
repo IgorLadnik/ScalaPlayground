@@ -29,7 +29,7 @@ object Main {
     config.put(KafkaPropNames.Partition, 0)
     config.put(KafkaPropNames.Offset, 0)
 
-    new KConsumer(config, (key, value) =>
+    val consumer = new KConsumer(config, (key, value) =>
         println(s"From Kafka: ${key} -> ${value.get("ID")} ${value.get("CreationTime")}"),
         e => e.printStackTrace)
       .startConsuming
@@ -65,6 +65,7 @@ object Main {
     System.in.read
 
     producer.close
+    consumer.close
 
     // Collections ==============================================================
     collectionsExamples

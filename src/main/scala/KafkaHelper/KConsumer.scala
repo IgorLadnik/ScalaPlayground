@@ -10,20 +10,36 @@ import org.apache.kafka.common.serialization.{ByteArrayDeserializer, StringDeser
 import scala.collection.JavaConverters._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
+import scala.util.{Failure, Success}
 
 class KConsumer(val config: Properties,
                 val p: (String, GenericRecord) => Unit,
                 val errHandler: (Exception) => Unit) {
 
-  def startConsuming: Future[Unit] = Future {
+  def startConsuming: KConsumer = {
+    startConsumingInner.onComplete {
+      case Success(u: Unit) => {
+        consumer.close
+        println("Kafka Consumer closed")
+      }
+      case Failure(e: Exception) => {
+        errHandler(e)
+        consumer.close
+      }
+    }
+    this
+  }
+
+  private[KConsumer] def startConsumingInner: Future[Unit] = Future {
     consumer.subscribe(Arrays.asList(topic))
-    while (true) {
+    while (continue) {
       val record = consumer.poll(100).asScala
       for (data <- record.iterator) {
         try {
           p(data.key, deserialize(data.value, topic))
-        } catch {
-          case e: Exception => e.printStackTrace
+        }
+        catch {
+          case e: Exception => errHandler(e)
         }
       }
     }
@@ -31,6 +47,10 @@ class KConsumer(val config: Properties,
 
   def deserialize(bts: Array[Byte], topic: String): GenericRecord =
     kafkaAvroDeserializer.deserialize(topic, bts, recordConfig.schema).asInstanceOf[GenericRecord]
+
+  def close = continue = false
+
+  @volatile var continue = true;
 
   val topic = config.get(KafkaPropNames.Topic).asInstanceOf[String]
 
