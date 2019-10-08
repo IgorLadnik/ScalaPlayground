@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16efc125-ba4e-4209-b2e4-686318978b98" name="Default Changelist" comment="Simple Kafka support added">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/KafkaHelper/KConsumer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/KafkaHelper/KConsumer.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/KafkaHelper/KProducer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/KafkaHelper/KProducer.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" afterDir="false" />
-    </list>
+    <list default="true" id="16efc125-ba4e-4209-b2e4-686318978b98" name="Default Changelist" comment="Futures added" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +190,7 @@
       <workItem from="1570473643682" duration="18318000" />
       <workItem from="1570525958873" duration="718000" />
       <workItem from="1570527505668" duration="80000" />
-      <workItem from="1570558021586" duration="7361000" />
+      <workItem from="1570558021586" duration="7608000" />
     </task>
     <task id="LOCAL-00001" summary="Variance">
       <created>1569830084922</created>
@@ -204,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569830084922</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Futures added">
+      <created>1570565838017</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1570565838017</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -235,7 +237,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Variance" />
     <MESSAGE value="Simple Kafka support added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Simple Kafka support added" />
+    <MESSAGE value="Futures added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Futures added" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
