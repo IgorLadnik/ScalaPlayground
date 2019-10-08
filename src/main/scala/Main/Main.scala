@@ -1,48 +1,43 @@
 package Main
 
+import java.util.Properties
 import ApplyUnapply._
 import DV.UrlParser.{StrExt, UrlInfoHolder}
 import Extension.Helpers._
 import Extension.MathInt
 import IdioticSocketsWithThreadPool.{NetworkClient, NetworkServer}
+import KafkaHelper._
 import Placement._
 import ReadWriteFile.FileHelper
 import Variance._
-import org.apache.avro.Schema
 import org.apache.avro.generic.GenericData
 import org.apache.avro.generic.GenericData.Record
+import KafkaHelper.KafkaPropNames
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}
-
-import Kafka.{Consumer, Producer}
 
 object Main {
   def main(args: Array[String]) {
 
     // Kafka ===================================================================
-    val bootstrapServers = "localhost:9092"
-    val topic = "quick-start"
-    val groupId = "consumer-group"
-    val partition = 0
-    val offset = 0
+    val config = new Properties
+    config.put(KafkaPropNames.BootstrapServers, "localhost:9092")
+    config.put(KafkaPropNames.SchemaRegistryUrl, "schema.json")
+    config.put(KafkaPropNames.Topic, "quick-start")
+    config.put(KafkaPropNames.GroupId, "consumer-group")
+    config.put(KafkaPropNames.Partition, 0)
+    config.put(KafkaPropNames.Offset, 0)
 
-    val strSchema = FileHelper.readUrlFromFile("schema.json")
-    if (StrExt.isNullOrEmpty(strSchema))
-      return null
-    val schema: Schema = new Schema.Parser().parse(strSchema)
+    new KConsumer(config, (key, value) =>
+        println(s"From Kafka: ${key} -> ${value.get("ID")} ${value.get("CreationTime")}"),
+        e => e.printStackTrace)
+      .startConsuming
 
-    val id = 322272
-    val version = 5
-
-    val consumer = new Consumer(schema, id, version, bootstrapServers, topic, groupId, partition, offset)
-    val producer = new Producer(schema, id, version, bootstrapServers, topic, groupId, partition, offset)
-
-    consumer.startConsuming(topic, (key, value) =>
-      println(s"From Kafka: ${key} -> ${value.get("ID")} ${value.get("CreationTime")}"))
+    val producer = new KProducer(config, e => e.printStackTrace)
 
     // Create avro generic record object
-    val genericUser: Record = new GenericData.Record(schema)
+    val genericUser: Record = new GenericData.Record(producer.recordConfig.schema)
 
     //Put data in that generic record and send it to Kafka
     {
@@ -53,7 +48,7 @@ object Main {
       genericUser.put("YouTubeCategoryTypeID", 1)
       genericUser.put("CreationTime", ticks) //Calendar.getInstance.getTime)
 
-      producer.send("key1", genericUser)
+      producer ! ("key1", genericUser)
     }
     {
       val ticks: Long = 2222
@@ -63,15 +58,15 @@ object Main {
       genericUser.put("YouTubeCategoryTypeID", 2)
       genericUser.put("CreationTime", ticks)
 
-      producer.send("key2", genericUser)
+      producer ! ("key2", genericUser)
     }
-
-    producer.close
 
     println("Press <Enter> to continue...")
     System.in.read
 
-    // Collections =============================================================
+    producer.close
+
+    // Collections ==============================================================
     collectionsExamples
 
     // Implicit =================================================================

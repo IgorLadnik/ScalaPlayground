@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16efc125-ba4e-4209-b2e4-686318978b98" name="Default Changelist" comment="Simple Kafka support added">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/Kafka/Common.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/KafkaHelper/KafkaPropNames.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/KafkaHelper/RecordConfig.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Kafka/Consumer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Kafka/Consumer.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Kafka/Producer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Kafka/Producer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Kafka/Common.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/KafkaHelper/SchemaRegistryClientEx.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Kafka/Consumer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/KafkaHelper/KConsumer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Kafka/Producer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/KafkaHelper/KProducer.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -193,6 +196,7 @@
       <workItem from="1570263443076" duration="1397000" />
       <workItem from="1570338893684" duration="15571000" />
       <workItem from="1570420694168" duration="2020000" />
+      <workItem from="1570473643682" duration="18318000" />
     </task>
     <task id="LOCAL-00001" summary="Variance">
       <created>1569830084922</created>
@@ -235,15 +239,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Simple Kafka support added" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/Kafka/Common.scala</url>
-          <line>13</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="message" />

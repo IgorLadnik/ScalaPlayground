@@ -1,14 +1,12 @@
-package Kafka
+package KafkaHelper
 
 import java.util._
 
-import io.confluent.kafka.schemaregistry.client.SchemaMetadata
+import io.confluent.kafka.schemaregistry.client.{SchemaMetadata, _}
+import io.confluent.kafka.serializers.KafkaAvroDeserializer
 import org.apache.avro.Schema
-import io.confluent.kafka.serializers.{KafkaAvroSerializer, KafkaAvroDeserializer}
-import org.apache.avro.generic.GenericRecord
 
-class SchemaRegistryClientEx(val schema: Schema, val id: Int, val version: Int)
-  extends io.confluent.kafka.schemaregistry.client.SchemaRegistryClient {
+class SchemaRegistryClientEx(val schema: Schema, val id: Int, val version: Int) extends SchemaRegistryClient {
 
   val strSchema = schema.toString
   val schemaMetadata = new SchemaMetadata(id, version, schema.toString)
@@ -25,17 +23,17 @@ class SchemaRegistryClientEx(val schema: Schema, val id: Int, val version: Int)
   override def getAllSubjects(): Collection[String] = new ArrayList[String]
 }
 
-class SerDeHelper(schema: Schema, id: Int, version: Int) {
-  val schemaRegistryClient = new SchemaRegistryClientEx(schema, id, version)
-  val kafkaAvroSerializer = new KafkaAvroSerializer(schemaRegistryClient)
-  val kafkaAvroDeserializer = new KafkaAvroDeserializer(schemaRegistryClient)
-
-  def serialize(genericRecord: GenericRecord, topic: String): Array[Byte] =
-    kafkaAvroSerializer.serialize(topic, genericRecord)
-
-  def deserialize(bts: Array[Byte], topic: String): GenericRecord =
-    kafkaAvroDeserializer.deserialize(topic, bts, schema).asInstanceOf[GenericRecord]
-}
+//class SerDeHelper(schema: Schema, id: Int, version: Int) {
+//  val schemaRegistryClient = new SchemaRegistryClientEx(schema, id, version)
+//  val kafkaAvroSerializer = new KafkaAvroSerializer(schemaRegistryClient)
+//  val kafkaAvroDeserializer = new KafkaAvroDeserializer(schemaRegistryClient)
+//
+//  def serialize(genericRecord: GenericRecord, topic: String): Array[Byte] =
+//    kafkaAvroSerializer.serialize(topic, genericRecord)
+//
+//  def deserialize(bts: Array[Byte], topic: String): GenericRecord =
+//    kafkaAvroDeserializer.deserialize(topic, bts, schema).asInstanceOf[GenericRecord]
+//}
 
 //public interface SchemaRegistryClient {
 //  int register(String var1, Schema var2) throws IOException, RestClientException;
