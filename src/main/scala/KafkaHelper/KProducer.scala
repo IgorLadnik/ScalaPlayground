@@ -12,27 +12,34 @@ import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
 class KProducer(val config: Properties,
-                val errHandler: (Exception) => Unit) {
+                val errHandler: (String) => Unit) {
+
+  import scala.collection.mutable.Queue
 
   def !(key: String,  genericRecord: GenericRecord) = send(key, genericRecord)
 
   def send(key: String, genericRecord: GenericRecord) = {
-    sendInner(key, genericRecord).onComplete {
+    enqueueGenericRecord(new Tuple2(key, genericRecord))
+
+    sendInner.onComplete {
       case Success(u: Unit) => {}
-      case Failure(e: Exception) => errHandler(e)
+      case Failure(e: Exception) => errHandler(e.getMessage)
     }
   }
 
-  private[KProducer] def sendInner(key: String, genericRecord: GenericRecord): Future[Unit] = Future {
-    try {
-      val topic = config.get(KafkaPropNames.Topic).asInstanceOf[String]
-      val m = producer.send(new ProducerRecord[String, Array[Byte]](topic,
-                                config.get(KafkaPropNames.Partition).asInstanceOf[Int],
-                                key, serialize(genericRecord, topic)))
-    }
-    catch {
-      case e: Exception => errHandler(e)
-      close
+  private[KProducer] def sendInner: Future[Unit] = Future {
+    var continue = true
+    while(isNonEmptyQuePair) {
+      try {
+        val tuple = dequeueGenericRecord
+        producer.send(new ProducerRecord[String, Array[Byte]](topic,
+                              config.get(KafkaPropNames.Partition).asInstanceOf[Int],
+                              tuple._1, serialize(tuple._2, topic)))
+      }
+      catch {
+        case e: Exception => errHandler(e.getMessage)
+        close
+      }
     }
   }
 
@@ -44,8 +51,29 @@ class KProducer(val config: Properties,
     println("Kafka Producer closed")
   }
 
+  def enqueueGenericRecord(t: (String, GenericRecord)) = {
+    this.synchronized {
+      quePair.enqueue(t)
+    }
+  }
+
+  def dequeueGenericRecord: Tuple2[String, GenericRecord] = {
+    this.synchronized {
+      quePair.dequeue
+    }
+  }
+
+  def isNonEmptyQuePair: Boolean = {
+    this.synchronized {
+      quePair.nonEmpty
+    }
+  }
+
+  val topic = config.get(KafkaPropNames.Topic).asInstanceOf[String];
+  val quePair = new Queue[Tuple2[String, GenericRecord]]
+
   //Read avro schema file
-  //val schema: Schema = new Parser().parse(Source.fromURL(getClass.getResource("/schema.avsc")).mkString) //1
+  //val schema: Schema = new Parser().parse(Source.fromURL(getClass.getResource("/schema.avsc")).mkString)
 
   val recordConfig = new RecordConfig(config.get(KafkaPropNames.SchemaRegistryUrl).asInstanceOf[String])
   val schemaRegistryClient = new SchemaRegistryClientEx(recordConfig.schema, recordConfig.id, recordConfig.version)

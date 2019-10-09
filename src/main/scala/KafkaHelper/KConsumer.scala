@@ -14,7 +14,7 @@ import scala.util.{Failure, Success}
 
 class KConsumer(val config: Properties,
                 val p: (String, GenericRecord) => Unit,
-                val errHandler: (Exception) => Unit) {
+                val errHandler: (String) => Unit) {
 
   def startConsuming: KConsumer = {
     startConsumingInner.onComplete {
@@ -23,7 +23,7 @@ class KConsumer(val config: Properties,
         println("Kafka Consumer closed")
       }
       case Failure(e: Exception) => {
-        errHandler(e)
+        errHandler(e.getMessage)
         consumer.close
       }
     }
@@ -39,7 +39,7 @@ class KConsumer(val config: Properties,
           p(data.key, deserialize(data.value, topic))
         }
         catch {
-          case e: Exception => errHandler(e)
+          case e: Exception => errHandler(e.getMessage)
         }
       }
     }
@@ -50,7 +50,7 @@ class KConsumer(val config: Properties,
 
   def close = continue = false
 
-  @volatile var continue = true;
+  @volatile var continue = true
 
   val topic = config.get(KafkaPropNames.Topic).asInstanceOf[String]
 

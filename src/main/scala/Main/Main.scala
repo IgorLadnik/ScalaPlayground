@@ -29,18 +29,17 @@ object Main {
     config.put(KafkaPropNames.Partition, 0)
     config.put(KafkaPropNames.Offset, 0)
 
-    val consumer = new KConsumer(config, (key, value) =>
-        println(s"From Kafka: ${key} -> ${value.get("ID")} ${value.get("CreationTime")}"),
-        e => e.printStackTrace)
+    val consumer = new KConsumer(config,
+        (key, value) => println(s"From Kafka: ${key} -> ${value.get("ID")} ${value.get("CreationTime")}"),
+        e => println(e))
       .startConsuming
 
-    val producer = new KProducer(config, e => e.printStackTrace)
+    val producer = new KProducer(config, e => println(e))
 
-    // Create avro generic record object
-    val genericUser: Record = new GenericData.Record(producer.recordConfig.schema)
-
-    //Put data in that generic record and send it to Kafka
+    // Create avro generic record object &
+    //   put data in that generic record and send it to Kafka
     {
+      val genericUser: Record = new GenericData.Record(producer.recordConfig.schema)
       val ticks: Long = 1111
       genericUser.put("SEQUENCE", 1)
       genericUser.put("ID", 1)
@@ -51,6 +50,7 @@ object Main {
       producer ! ("key1", genericUser)
     }
     {
+      val genericUser: Record = new GenericData.Record(producer.recordConfig.schema)
       val ticks: Long = 2222
       genericUser.put("SEQUENCE", 2)
       genericUser.put("ID", 2)
@@ -60,6 +60,8 @@ object Main {
 
       producer ! ("key2", genericUser)
     }
+
+    Thread.sleep(3000)
 
     println("Press <Enter> to continue...")
     System.in.read
