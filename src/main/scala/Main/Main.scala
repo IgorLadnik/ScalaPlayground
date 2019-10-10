@@ -23,7 +23,7 @@ object Main {
     // Kafka ===================================================================
     val config = new Properties
     config.put(KafkaPropNames.BootstrapServers, "localhost:9092")
-    config.put(KafkaPropNames.SchemaRegistryUrl, "schema.json")
+    config.put(KafkaPropNames.SchemaRegistryUrl, "wwwroot/schema.json")
     config.put(KafkaPropNames.Topic, "quick-start")
     config.put(KafkaPropNames.GroupId, "consumer-group")
     config.put(KafkaPropNames.Partition, 0)

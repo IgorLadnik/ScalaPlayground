@@ -16,10 +16,13 @@ class KProducer(val config: Properties,
 
   import scala.collection.mutable.Queue
 
-  def !(key: String,  genericRecord: GenericRecord) = send(key, genericRecord)
+  def !(key: String,  genericRecord: GenericRecord): Unit = send(key, genericRecord)
 
-  def send(key: String, genericRecord: GenericRecord) = {
+  def send(key: String, genericRecord: GenericRecord): Unit = {
     enqueueGenericRecord(new Tuple2(key, genericRecord))
+
+    if (isSending)
+      return
 
     sendInner.onComplete {
       case Success(u: Unit) => {}
@@ -28,8 +31,11 @@ class KProducer(val config: Properties,
   }
 
   private[KProducer] def sendInner: Future[Unit] = Future {
-    var continue = true
+
+    isSending  = true
+
     while(isNonEmptyQuePair) {
+
       try {
         val tuple = dequeueGenericRecord
         producer.send(new ProducerRecord[String, Array[Byte]](topic,
@@ -40,6 +46,8 @@ class KProducer(val config: Properties,
         case e: Exception => errHandler(e.getMessage)
         close
       }
+
+      isSending = false
     }
   }
 
@@ -51,19 +59,19 @@ class KProducer(val config: Properties,
     println("Kafka Producer closed")
   }
 
-  def enqueueGenericRecord(t: (String, GenericRecord)) = {
+  private[KProducer] def enqueueGenericRecord(t: (String, GenericRecord)) = {
     this.synchronized {
       quePair.enqueue(t)
     }
   }
 
-  def dequeueGenericRecord: Tuple2[String, GenericRecord] = {
+  private[KProducer] def dequeueGenericRecord: Tuple2[String, GenericRecord] = {
     this.synchronized {
       quePair.dequeue
     }
   }
 
-  def isNonEmptyQuePair: Boolean = {
+  private[KProducer] def isNonEmptyQuePair: Boolean = {
     this.synchronized {
       quePair.nonEmpty
     }
@@ -74,6 +82,8 @@ class KProducer(val config: Properties,
 
   //Read avro schema file
   //val schema: Schema = new Parser().parse(Source.fromURL(getClass.getResource("/schema.avsc")).mkString)
+
+  @volatile var isSending = false
 
   val recordConfig = new RecordConfig(config.get(KafkaPropNames.SchemaRegistryUrl).asInstanceOf[String])
   val schemaRegistryClient = new SchemaRegistryClientEx(recordConfig.schema, recordConfig.id, recordConfig.version)

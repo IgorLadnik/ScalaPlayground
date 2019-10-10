@@ -6,4 +6,5 @@ object Dependencies {
   lazy val avro = "org.apache.avro"  %  "avro"  %  "1.7.7"
   lazy val avroSerializer = "io.confluent" % "kafka-avro-serializer" % "3.2.1"
   lazy val logBack = "ch.qos.logback" %  "logback-classic" % "1.1.7"
+  lazy val parser = "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4"
 }

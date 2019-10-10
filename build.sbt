@@ -13,7 +13,8 @@ lazy val root = (project in file("."))
       kafka,
       avro,
       avroSerializer,
-      logBack
+      logBack,
+      parser
     )
 )
 
