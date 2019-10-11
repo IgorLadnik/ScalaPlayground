@@ -1,54 +1,33 @@
 package KafkaHelper
 
 import java.util.Properties
-
 import io.confluent.kafka.serializers.{KafkaAvroDeserializer, KafkaAvroSerializer}
 import org.apache.avro.generic.GenericRecord
 import org.apache.kafka.clients.producer._
 import org.apache.kafka.common.serialization.{ByteArraySerializer, StringSerializer}
-
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
+import scala.concurrent.Await
+import scala.concurrent.duration.Duration
 
 class KProducer(val config: Properties,
-                val errHandler: (String) => Unit) {
+                val logger: (String) => Unit) {
 
-  import scala.collection.mutable.Queue
+  // Same as send()
+  def !(key: String,  genericRecord: GenericRecord) = send(key, genericRecord)
 
-  def !(key: String,  genericRecord: GenericRecord): Unit = send(key, genericRecord)
-
-  def send(key: String, genericRecord: GenericRecord): Unit = {
-    enqueueGenericRecord(new Tuple2(key, genericRecord))
-
-    if (isSending)
-      return
-
-    sendInner.onComplete {
-      case Success(u: Unit) => {}
-      case Failure(e: Exception) => errHandler(e.getMessage)
+  def send(key: String, genericRecord: GenericRecord) = {
+    Await.ready(sendInner(key, genericRecord), Duration.Inf).onComplete {
+      case Success(u: Unit) => { }
+      case Failure(e: Exception) => { logger(e.getMessage); close }
     }
   }
 
-  private[KProducer] def sendInner: Future[Unit] = Future {
-
-    isSending  = true
-
-    while(isNonEmptyQuePair) {
-
-      try {
-        val tuple = dequeueGenericRecord
-        producer.send(new ProducerRecord[String, Array[Byte]](topic,
-                              config.get(KafkaPropNames.Partition).asInstanceOf[Int],
-                              tuple._1, serialize(tuple._2, topic)))
-      }
-      catch {
-        case e: Exception => errHandler(e.getMessage)
-        close
-      }
-
-      isSending = false
-    }
+  private[KProducer] def sendInner(key: String, genericRecord: GenericRecord): Future[Unit] = Future {
+      producer.send(new ProducerRecord[String, Array[Byte]](topic,
+                    config.get(KafkaPropNames.Partition).asInstanceOf[Int],
+                    key, serialize(genericRecord, topic)))
   }
 
   def serialize(genericRecord: GenericRecord, topic: String): Array[Byte] =
@@ -59,31 +38,10 @@ class KProducer(val config: Properties,
     println("Kafka Producer closed")
   }
 
-  private[KProducer] def enqueueGenericRecord(t: (String, GenericRecord)) = {
-    this.synchronized {
-      quePair.enqueue(t)
-    }
-  }
-
-  private[KProducer] def dequeueGenericRecord: Tuple2[String, GenericRecord] = {
-    this.synchronized {
-      quePair.dequeue
-    }
-  }
-
-  private[KProducer] def isNonEmptyQuePair: Boolean = {
-    this.synchronized {
-      quePair.nonEmpty
-    }
-  }
-
   val topic = config.get(KafkaPropNames.Topic).asInstanceOf[String];
-  val quePair = new Queue[Tuple2[String, GenericRecord]]
 
   //Read avro schema file
   //val schema: Schema = new Parser().parse(Source.fromURL(getClass.getResource("/schema.avsc")).mkString)
-
-  @volatile var isSending = false
 
   val recordConfig = new RecordConfig(config.get(KafkaPropNames.SchemaRegistryUrl).asInstanceOf[String])
   val schemaRegistryClient = new SchemaRegistryClientEx(recordConfig.schema, recordConfig.id, recordConfig.version)

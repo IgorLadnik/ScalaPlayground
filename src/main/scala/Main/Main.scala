@@ -1,18 +1,17 @@
 package Main
 
-import java.util.Properties
+import java.util.{Properties, Timer, TimerTask}
+
 import ApplyUnapply._
 import DV.UrlParser.{StrExt, UrlInfoHolder}
 import Extension.Helpers._
 import Extension.MathInt
 import IdioticSocketsWithThreadPool.{NetworkClient, NetworkServer}
-import KafkaHelper._
+import KafkaHelper.{KafkaPropNames, _}
 import Placement._
 import ReadWriteFile.FileHelper
 import Variance._
 import org.apache.avro.generic.GenericData
-import org.apache.avro.generic.GenericData.Record
-import KafkaHelper.KafkaPropNames
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}
@@ -30,38 +29,45 @@ object Main {
     config.put(KafkaPropNames.Offset, 0)
 
     val consumer = new KConsumer(config,
-        (key, value) => println(s"From Kafka: ${key} -> ${value.get("ID")} ${value.get("CreationTime")}"),
-        e => println(e))
+        (key, value) => println(s"${key} -> ${value.get("ID")} ${value.get("CreationTime")}"),
+      s => println(s))
       .startConsuming
 
-    val producer = new KProducer(config, e => println(e))
+    val producer = new KProducer(config, s => println(s))
+
+    import java.util.Calendar
 
     // Create avro generic record object &
     //   put data in that generic record and send it to Kafka
-    {
-      val genericUser: Record = new GenericData.Record(producer.recordConfig.schema)
-      val ticks: Long = 1111
-      genericUser.put("SEQUENCE", 1)
-      genericUser.put("ID", 1)
-      genericUser.put("CategoryID", 1)
-      genericUser.put("YouTubeCategoryTypeID", 1)
-      genericUser.put("CreationTime", ticks) //Calendar.getInstance.getTime)
+    var count = 0
 
-      producer ! ("key1", genericUser)
-    }
-    {
-      val genericUser: Record = new GenericData.Record(producer.recordConfig.schema)
-      val ticks: Long = 2222
-      genericUser.put("SEQUENCE", 2)
-      genericUser.put("ID", 2)
-      genericUser.put("CategoryID", 2)
-      genericUser.put("YouTubeCategoryTypeID", 2)
-      genericUser.put("CreationTime", ticks)
+    var startTime = Calendar.getInstance
+    startTime.set(2019, 10, 10)
+    val startTimeInMillis = startTime.getTimeInMillis
 
-      producer ! ("key2", genericUser)
-    }
+    new Timer("timer").schedule(
+      new TimerTask {
+        def run = {
+          this.synchronized {
+            for (i <- 0 until 10) {
+              count -= 1
 
-    Thread.sleep(3000)
+              val genericUser = new GenericData.Record(producer.recordConfig.schema)
+
+              genericUser.put("SEQUENCE", count)
+              genericUser.put("ID", count)
+              genericUser.put("CategoryID", count)
+              genericUser.put("YouTubeCategoryTypeID", count)
+              genericUser.put("CreationTime", Calendar.getInstance.getTimeInMillis - startTimeInMillis)
+
+              producer ! (count.toString, genericUser) // same as send()
+            }
+          }
+        }
+      },
+      0,
+      5000
+    )
 
     println("Press <Enter> to continue...")
     System.in.read

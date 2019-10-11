@@ -14,18 +14,12 @@ import scala.util.{Failure, Success}
 
 class KConsumer(val config: Properties,
                 val p: (String, GenericRecord) => Unit,
-                val errHandler: (String) => Unit) {
+                val logger: (String) => Unit) {
 
   def startConsuming: KConsumer = {
     startConsumingInner.onComplete {
-      case Success(u: Unit) => {
-        consumer.close
-        println("Kafka Consumer closed")
-      }
-      case Failure(e: Exception) => {
-        errHandler(e.getMessage)
-        consumer.close
-      }
+      case Success(u: Unit) => { consumer.close; logger("Kafka Consumer closed") }
+      case Failure(e: Exception) => { logger(e.getMessage); consumer.close }
     }
     this
   }
@@ -35,12 +29,8 @@ class KConsumer(val config: Properties,
     while (continue) {
       val record = consumer.poll(100).asScala
       for (data <- record.iterator) {
-        try {
-          p(data.key, deserialize(data.value, topic))
-        }
-        catch {
-          case e: Exception => errHandler(e.getMessage)
-        }
+        try p(data.key, deserialize(data.value, topic))
+        catch { case e: Exception => logger(e.getMessage) }
       }
     }
   }
@@ -68,17 +58,3 @@ class KConsumer(val config: Properties,
 
   private[KConsumer] val consumer = new KafkaConsumer[String, Array[Byte]](config)
 }
-
-//private def initSchemaRegistryClient(settings: SchemaRegistryClientSettings): SchemaRegistryClient = {
-//  val config = settings.authentication match {
-//  case Authentication.Basic(username, password) =>
-//  Map(
-//  "basic.auth.credentials.source" -> "USER_INFO",
-//  "schema.registry.basic.auth.user.info" -> s"$username:$password"
-//  )
-//  case Authentication.None =>
-//  Map.empty[String, String]
-//}
-//
-//  new CachedSchemaRegistryClient(settings.endpoint, settings.maxCacheSize, config.asJava)
-//}
