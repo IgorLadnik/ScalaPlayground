@@ -4,7 +4,7 @@
 		module="scalaplayground_2.12"
 		revision="0.1.0-SNAPSHOT"
 		status="integration"
-		publication="20191011081537"
+		publication="20191012172247"
 	>
 		<description>
 		ScalaPlayground
@@ -38,5 +38,8 @@
 		<dependency org="io.confluent" name="kafka-avro-serializer" rev="3.2.1" conf="compile->default(compile)"/>
 		<dependency org="ch.qos.logback" name="logback-classic" rev="1.1.7" conf="compile->default(compile)"/>
 		<dependency org="org.scala-lang.modules" name="scala-parser-combinators_2.12" rev="1.0.4" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.akka" name="akka-actor_2.12" rev="2.6.0-M2" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.akka" name="akka-http_2.12" rev="10.1.10" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.akka" name="akka-stream_2.12" rev="2.5.23" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

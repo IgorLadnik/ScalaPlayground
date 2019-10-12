@@ -1,10 +1,17 @@
 package KafkaHelper
 
+import akka.actor.ActorSystem
+import akka.http.scaladsl.Http
+import akka.http.scaladsl.model._
 import org.apache.avro.Schema
-import scala.io.Source
-import scala.util.parsing.json.JSON
+
+import scala.concurrent.duration._
+import scala.concurrent.{Await, Future}
+import scala.io.Source//.JSON
 
 class RecordConfig(val schemaRegistryUrl: String) {
+
+  import scala.util.parsing.json.JSON
 
   def getSchemaString(strOrg: String): String = {
     val startIndex = strOrg.indexOf("{\"type\":")
@@ -12,7 +19,43 @@ class RecordConfig(val schemaRegistryUrl: String) {
     strOrg.substring(startIndex, endIndex)
   }
 
-  val strConfig = Source.fromFile(schemaRegistryUrl).mkString.replace("\r", "").replace("\n", "").replace("\t", "").replace(" ", "")
+  def getConfigString: String = {
+    implicit val system = ActorSystem()
+    //implicit val materializer = ActorMaterializer()
+    // needed for the future flatMap/onComplete in the end
+    implicit val executionContext = system.dispatcher
+
+    var strConfig: String = ""
+
+    try {
+      val responseFuture: Future[HttpResponse] = Http().singleRequest(HttpRequest(uri = schemaRegistryUrl))
+
+      //  responseFuture
+      //    .onComplete {
+      //      case Success(res) => println(res)
+      //      case Failure(_)   => sys.error("something wrong")
+      //    }
+
+      val response = Await.result(responseFuture, 1 second)
+      if (response.status.intValue == 200)
+        strConfig = response.entity.toString
+    }
+    catch {
+      case e: Exception => printf(e.getMessage)
+    }
+
+    if (strConfig.nonEmpty) {
+      val startIndex = strConfig.indexOf("{")
+      val endIndex = strConfig.lastIndexOf("}")
+      strConfig = strConfig.substring(startIndex, endIndex + 1)
+    }
+    else
+      strConfig = Source.fromFile(schemaRegistryUrl).mkString
+
+    strConfig.replace("\r", "").replace("\n", "").replace("\t", "").replace(" ", "")
+  }
+
+  val strConfig = getConfigString
   val strSchema = getSchemaString(strConfig)
   val schema = new Schema.Parser().parse(strSchema)
 

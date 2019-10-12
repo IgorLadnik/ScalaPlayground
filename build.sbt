@@ -14,9 +14,14 @@ lazy val root = (project in file("."))
       avro,
       avroSerializer,
       logBack,
-      parser
+      parser,
+      akkaActor,
+      akkaHttp,
+      akkaStream
     )
 )
+
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
 logLevel := Level.Error
 

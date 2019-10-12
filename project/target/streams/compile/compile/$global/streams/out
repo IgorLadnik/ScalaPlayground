@@ -1,4 +1,7 @@
-[error] C:\prj\_Scala\ScalaPlayground\project\Dependencies.scala:7:79: ';' expected but ',' found.
-[error]   lazy val avroSerializer = "io.confluent" % "kafka-avro-serializer" % "3.2.1",
-[error]                                                                               ^
-[error] one error found
+[error] C:\prj\_Scala\ScalaPlayground\project\Dependencies.scala:16:1: expected class or object definition
+[error] "com.typesafe.akka" %% "akka-http"   % "10.1.10"
+[error] ^
+[error] C:\prj\_Scala\ScalaPlayground\project\Dependencies.scala:17:1: expected class or object definition
+[error] "com.typesafe.akka" %% "akka-stream" % "2.5.23" // or whatever the latest version is
+[error] ^
+[error] two errors found

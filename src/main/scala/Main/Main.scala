@@ -12,7 +12,6 @@ import Placement._
 import ReadWriteFile.FileHelper
 import Variance._
 import org.apache.avro.generic.GenericData
-
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}
 
@@ -22,6 +21,7 @@ object Main {
     // Kafka ===================================================================
     val config = new Properties
     config.put(KafkaPropNames.BootstrapServers, "localhost:9092")
+    //config.put(KafkaPropNames.SchemaRegistryUrl, "http://localhost:9999/schema.json")
     config.put(KafkaPropNames.SchemaRegistryUrl, "wwwroot/schema.json")
     config.put(KafkaPropNames.Topic, "quick-start")
     config.put(KafkaPropNames.GroupId, "consumer-group")
