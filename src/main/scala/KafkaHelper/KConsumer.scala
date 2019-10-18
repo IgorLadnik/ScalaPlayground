@@ -16,6 +16,28 @@ class KConsumer(val config: Properties,
                 val p: (String, GenericRecord, Long) => Unit,
                 val logger: (String) => Unit) {
 
+  @volatile var continue = true
+
+  // Ctor
+
+  val topic = config.get(KafkaPropNames.Topic).asInstanceOf[String]
+
+  val recordConfig = new RecordConfig(config.get(KafkaPropNames.SchemaRegistryUrl).asInstanceOf[String])
+  val schemaRegistryClient = new SchemaRegistryClientEx(recordConfig.schema, recordConfig.id, recordConfig.version)
+  val kafkaAvroDeserializer = new KafkaAvroDeserializer(schemaRegistryClient)
+
+  config.put(KafkaPropNames.KeyDeserializer, classOf[StringDeserializer].getCanonicalName)
+  config.put(KafkaPropNames.ValueDeserializer, classOf[ByteArrayDeserializer].getCanonicalName)
+
+  //config.put("auto.offset.reset", "latest")
+
+  // Use Specific Record or else you get Avro GenericRecord.
+  config.put("specific.avro.reader", "false")
+
+  private[KConsumer] val consumer = new KafkaConsumer[String, Array[Byte]](config)
+
+  // Methods
+
   def startConsuming: KConsumer = {
     startConsumingInner.onComplete {
       case Success(u: Unit) => { consumer.close; logger("Kafka Consumer closed") }
@@ -39,22 +61,4 @@ class KConsumer(val config: Properties,
     kafkaAvroDeserializer.deserialize(topic, bts, recordConfig.schema).asInstanceOf[GenericRecord]
 
   def close = continue = false
-
-  @volatile var continue = true
-
-  val topic = config.get(KafkaPropNames.Topic).asInstanceOf[String]
-
-  val recordConfig = new RecordConfig(config.get(KafkaPropNames.SchemaRegistryUrl).asInstanceOf[String])
-  val schemaRegistryClient = new SchemaRegistryClientEx(recordConfig.schema, recordConfig.id, recordConfig.version)
-  val kafkaAvroDeserializer = new KafkaAvroDeserializer(schemaRegistryClient)
-
-  config.put(KafkaPropNames.KeyDeserializer, classOf[StringDeserializer].getCanonicalName)
-  config.put(KafkaPropNames.ValueDeserializer, classOf[ByteArrayDeserializer].getCanonicalName)
-
-  //config.put("auto.offset.reset", "latest")
-
-  // Use Specific Record or else you get Avro GenericRecord.
-  config.put("specific.avro.reader", "false")
-
-  private[KConsumer] val consumer = new KafkaConsumer[String, Array[Byte]](config)
 }

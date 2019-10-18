@@ -1,7 +1,6 @@
 package KafkaHelper
 
 import java.util._
-
 import io.confluent.kafka.schemaregistry.client.{SchemaMetadata, _}
 import io.confluent.kafka.serializers.KafkaAvroDeserializer
 import org.apache.avro.Schema

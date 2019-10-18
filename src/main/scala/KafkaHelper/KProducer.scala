@@ -13,9 +13,26 @@ import scala.concurrent.duration.Duration
 
 class KProducer(val config: Properties,
                 val logger: (String) => Unit) {
+  // Ctor
+
+  val topic = config.get(KafkaPropNames.Topic).asInstanceOf[String];
+
+  //Read avro schema file
+  //val schema: Schema = new Parser().parse(Source.fromURL(getClass.getResource("/schema.avsc")).mkString)
+
+  val recordConfig = new RecordConfig(config.get(KafkaPropNames.SchemaRegistryUrl).asInstanceOf[String])
+  val schemaRegistryClient = new SchemaRegistryClientEx(recordConfig.schema, recordConfig.id, recordConfig.version)
+  val kafkaAvroSerializer = new KafkaAvroSerializer(schemaRegistryClient)
+
+  config.put(KafkaPropNames.KeySerializer, classOf[StringSerializer].getCanonicalName)
+  config.put(KafkaPropNames.ValueSerializer, classOf[ByteArraySerializer].getCanonicalName)
+
+  private[KProducer] val producer = new KafkaProducer[String, Array[Byte]](config)
+
+  // Methods
 
   // Same as send()
-  def !(key: String,  genericRecord: GenericRecord) = send(key, genericRecord)
+  def !(key: String, genericRecord: GenericRecord) = send(key, genericRecord)
 
   def send(key: String, genericRecord: GenericRecord) = {
     Await.ready(sendInner(key, genericRecord), Duration.Inf).onComplete {
@@ -37,20 +54,6 @@ class KProducer(val config: Properties,
     producer.close
     println("Kafka Producer closed")
   }
-
-  val topic = config.get(KafkaPropNames.Topic).asInstanceOf[String];
-
-  //Read avro schema file
-  //val schema: Schema = new Parser().parse(Source.fromURL(getClass.getResource("/schema.avsc")).mkString)
-
-  val recordConfig = new RecordConfig(config.get(KafkaPropNames.SchemaRegistryUrl).asInstanceOf[String])
-  val schemaRegistryClient = new SchemaRegistryClientEx(recordConfig.schema, recordConfig.id, recordConfig.version)
-  val kafkaAvroSerializer = new KafkaAvroSerializer(schemaRegistryClient)
-
-  config.put(KafkaPropNames.KeySerializer, classOf[StringSerializer].getCanonicalName)
-  config.put(KafkaPropNames.ValueSerializer, classOf[ByteArraySerializer].getCanonicalName)
-
-  private[KProducer] val producer = new KafkaProducer[String, Array[Byte]](config)
 }
 
 

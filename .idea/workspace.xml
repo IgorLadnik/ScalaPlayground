@@ -4,9 +4,10 @@
     <list default="true" id="16efc125-ba4e-4209-b2e4-686318978b98" name="Default Changelist" comment="Futures added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/KafkaHelper/KConsumer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/KafkaHelper/KConsumer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/KafkaHelper/KProducer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/KafkaHelper/KProducer.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/KafkaHelper/RecordConfig.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/KafkaHelper/RecordConfig.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/KafkaHelper/SchemaRegistryClientEx.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/KafkaHelper/SchemaRegistryClientEx.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wwwroot/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/schema.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -214,7 +215,8 @@
       <workItem from="1570897036765" duration="156000" />
       <workItem from="1570940402019" duration="1981000" />
       <workItem from="1570980715398" duration="6000" />
-      <workItem from="1571375445409" duration="7008000" />
+      <workItem from="1571375445409" duration="7650000" />
+      <workItem from="1571394631985" duration="2296000" />
     </task>
     <task id="LOCAL-00001" summary="Variance">
       <created>1569830084922</created>

@@ -1,7 +1,6 @@
 package Main
 
 import java.util.{Properties, Timer, TimerTask}
-
 import ApplyUnapply._
 import DV.UrlParser.{StrExt, UrlInfoHolder}
 import Extension.Helpers._
@@ -21,10 +20,16 @@ object Main {
   def main(args: Array[String]) {
 
     // Kafka ===================================================================
+    val isFromLocalFile = true //1
+
+    val schemaFileName = "schema.json"
+    var urlSchemaPrefix = "http://localhost:9999/"
+    if (isFromLocalFile)
+      urlSchemaPrefix = "wwwroot/"
+
     val config = new Properties
     config.put(KafkaPropNames.BootstrapServers, "localhost:9092")
-    //1 config.put(KafkaPropNames.SchemaRegistryUrl, "http://localhost:9999/schema.json")
-    config.put(KafkaPropNames.SchemaRegistryUrl, "wwwroot/schema.json")  //1
+    config.put(KafkaPropNames.SchemaRegistryUrl, s"${urlSchemaPrefix}${schemaFileName}")
     config.put(KafkaPropNames.Topic, "aa-topic")
     config.put(KafkaPropNames.GroupId, "aa-group")
     config.put(KafkaPropNames.Partition, 0)
