@@ -14,6 +14,8 @@ import Variance._
 import org.apache.avro.generic.GenericData
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{Failure, Success}
+import scala.util.Random
+import akka.http.scaladsl.model.DateTime
 
 object Main {
   def main(args: Array[String]) {
@@ -21,46 +23,54 @@ object Main {
     // Kafka ===================================================================
     val config = new Properties
     config.put(KafkaPropNames.BootstrapServers, "localhost:9092")
-    //config.put(KafkaPropNames.SchemaRegistryUrl, "http://localhost:9999/schema.json")
-    config.put(KafkaPropNames.SchemaRegistryUrl, "wwwroot/schema.json")
-    config.put(KafkaPropNames.Topic, "quick-start")
-    config.put(KafkaPropNames.GroupId, "consumer-group")
+    //1 config.put(KafkaPropNames.SchemaRegistryUrl, "http://localhost:9999/schema.json")
+    config.put(KafkaPropNames.SchemaRegistryUrl, "wwwroot/schema.json")  //1
+    config.put(KafkaPropNames.Topic, "aa-topic")
+    config.put(KafkaPropNames.GroupId, "aa-group")
     config.put(KafkaPropNames.Partition, 0)
     config.put(KafkaPropNames.Offset, 0)
 
     val consumer = new KConsumer(config,
-        (key, value) => println(s"${key} -> ${value.get("ID")} ${value.get("CreationTime")}"),
-      s => println(s))
+        // Callback to process consumed (key -> value) item
+        (key, value, timestamp) => {
+          print(s"Scala  ${key}  ->  ")
+          var i = -1
+          val itr = value.getSchema.getFields.iterator
+          while (itr.hasNext) {
+            i += 1
+            print(s"${itr.next.name} = ${value.get(i)}   ")
+          }
+          println(DateTime.apply(timestamp))
+        },
+        // Callback to process log message
+        s => println(s))
       .startConsuming
 
-    val producer = new KProducer(config, s => println(s))
-
-    import java.util.Calendar
+    val producer = new KProducer(config,
+                                 // Callback to process log message
+                                 s => println(s))
 
     // Create avro generic record object &
     //   put data in that generic record and send it to Kafka
     var count = 0
-
-    var startTime = Calendar.getInstance
-    startTime.set(2019, 10, 10)
-    val startTimeInMillis = startTime.getTimeInMillis
+    val rnd = new Random(15)
 
     new Timer("timer").schedule(
       new TimerTask {
         def run = {
           this.synchronized {
             for (i <- 0 until 10) {
-              count -= 1
+              count += 1
 
-              val genericUser = new GenericData.Record(producer.recordConfig.schema)
+              val gr = new GenericData.Record(producer.recordConfig.schema)
 
-              genericUser.put("SEQUENCE", count)
-              genericUser.put("ID", count)
-              genericUser.put("CategoryID", count)
-              genericUser.put("YouTubeCategoryTypeID", count)
-              genericUser.put("CreationTime", Calendar.getInstance.getTimeInMillis - startTimeInMillis)
+              gr.put("Id", -count)
+              gr.put("Name", s"${config.get(KafkaPropNames.GroupId)}-${count}")
+              gr.put("BatchId", (count / 10) + 1)
+              gr.put("TextData", "Some text data")
+              gr.put("NumericData", Math.abs(rnd.nextLong % 100000))
 
-              producer ! (count.toString, genericUser) // same as send()
+              producer ! (s"${count}", gr) // same as send()
             }
           }
         }

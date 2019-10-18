@@ -1,0 +1,17 @@
+{"subject":"cache-youtube-category-mapping-value",
+            "version":5,
+            "id":322272,
+            "schema":
+	{"type":"record",
+		"name":"cache_youtube_category_mapping",
+		"namespace":"com.dv",
+		"fields":
+		[
+			{"name":"SEQUENCE",              "type":"int"},
+			{"name":"ID",                    "type":"int"},
+			{"name":"CategoryID",            "type":["null", "int"]},
+			{"name":"YouTubeCategoryTypeID", "type":["null", "int"]},
+			{"name":"CreationTime",          "type":["null", "long"], "default":null}
+		]
+	}
+}

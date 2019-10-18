@@ -1,17 +1,19 @@
-{"subject":"cache-youtube-category-mapping-value",
-            "version":5,
-            "id":322272,
+{
+	"subject":"aa-value",
+            "version":3,
+            "id":1395,
             "schema":
-	{"type":"record",
-		"name":"cache_youtube_category_mapping",
-		"namespace":"com.dv",
+	{
+		"type":"record",
+		"name":"aa",
+		"namespace":"il.aa",
 		"fields":
 		[
-			{"name":"SEQUENCE",              "type":"int"},
-			{"name":"ID",                    "type":"int"},
-			{"name":"CategoryID",            "type":["null", "int"]},
-			{"name":"YouTubeCategoryTypeID", "type":["null", "int"]},
-			{"name":"CreationTime",          "type":["null", "long"], "default":null}
+			{"name":"Id",           "type":"int"},
+			{"name":"Name",         "type":"string"},
+			{"name":"BatchId",      "type":["null", "int"]},
+			{"name":"TextData",     "type":["null", "string"]},
+			{"name":"NumericData",  "type":["null", "long"], "default":null}
 		]
 	}
 }

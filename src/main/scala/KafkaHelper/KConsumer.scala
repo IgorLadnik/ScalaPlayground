@@ -13,7 +13,7 @@ import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
 class KConsumer(val config: Properties,
-                val p: (String, GenericRecord) => Unit,
+                val p: (String, GenericRecord, Long) => Unit,
                 val logger: (String) => Unit) {
 
   def startConsuming: KConsumer = {
@@ -29,7 +29,7 @@ class KConsumer(val config: Properties,
     while (continue) {
       val record = consumer.poll(100).asScala
       for (data <- record.iterator) {
-        try p(data.key, deserialize(data.value, topic))
+        try p(data.key, deserialize(data.value, topic), data.timestamp)
         catch { case e: Exception => logger(e.getMessage) }
       }
     }

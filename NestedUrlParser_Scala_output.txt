@@ -1,0 +1,54 @@
+URL = http://domain.com:88/?a=123&b=https%3A%2F%2Fwww.soundingsonline.com%2Ffeatures%2Fbucking-the-tide%3Fy1%3D55%26y2%3Dhttps%253A%252F%252Fwww.bgu.ac.il%253Fp1%253Dhttp%25253A%25252F%25252Fwww.iitk.ac.in%25253Fp1%25253D1%252526p2%25253D2%2526p2%253D2121%2526p3%253Dhttps%25253A%25252F%25252Fsome.org%25253Fp1%25253D10%252526p2%25253D20%26y3%3D139&c=99&d=https%3A%2F%2Fwww.qqqq.io%3Fa%3Daaa%26b%3Dbbb
+
+*** 0
+Url: http://domain.com:88/?a=123&b=https%3a%2f%2fwww.soundingsonline.com%2ffeatures%2fbucking-the-tide%3fy1%3d55%26y2%3dhttps%253a%252f%252fwww.bgu.ac.il%253fp1%253dhttp%25253a%25252f%25252fwww.iitk.ac.in%25253fp1%25253d1%252526p2%25253d2%2526p2%253d2121%2526p3%253dhttps%25253a%25252f%25252fsome.org%25253fp1%25253d10%252526p2%25253d20%26y3%3d139&c=99&d=https%3a%2f%2fwww.qqqq.io%3fa%3daaa%26b%3dbbb
+Host: domain.com
+Depth = 0
+Parameters:
+  a = 123
+  b = https%3a%2f%2fwww.soundingsonline.com%2ffeatures%2fbucking-the-tide%3fy1%3d55%26y2%3dhttps%253a%252f%252fwww.bgu.ac.il%253fp1%253dhttp%25253a%25252f%25252fwww.iitk.ac.in%25253fp1%25253d1%252526p2%25253d2%2526p2%253d2121%2526p3%253dhttps%25253a%25252f%25252fsome.org%25253fp1%25253d10%252526p2%25253d20%26y3%3d139
+  c = 99
+  d = https%3a%2f%2fwww.qqqq.io%3fa%3daaa%26b%3dbbb
+
+*** 1
+Url: https://www.soundingsonline.com/features/bucking-the-tide?y1=55&y2=https%3a%2f%2fwww.bgu.ac.il%3fp1%3dhttp%253a%252f%252fwww.iitk.ac.in%253fp1%253d1%2526p2%253d2%26p2%3d2121%26p3%3dhttps%253a%252f%252fsome.org%253fp1%253d10%2526p2%253d20&y3=139
+Host: www.soundingsonline.com
+Depth = 1
+Parameters:
+  y1 = 55
+  y2 = https%3a%2f%2fwww.bgu.ac.il%3fp1%3dhttp%253a%252f%252fwww.iitk.ac.in%253fp1%253d1%2526p2%253d2%26p2%3d2121%26p3%3dhttps%253a%252f%252fsome.org%253fp1%253d10%2526p2%253d20
+  y3 = 139
+
+*** 2
+Url: https://www.qqqq.io?a=aaa&b=bbb
+Host: www.qqqq.io
+Depth = 1
+Parameters:
+  a = aaa
+  b = bbb
+
+*** 3
+Url: https://www.bgu.ac.il?p1=http%3a%2f%2fwww.iitk.ac.in%3fp1%3d1%26p2%3d2&p2=2121&p3=https%3a%2f%2fsome.org%3fp1%3d10%26p2%3d20
+Host: www.bgu.ac.il
+Depth = 2
+Parameters:
+  p1 = http%3a%2f%2fwww.iitk.ac.in%3fp1%3d1%26p2%3d2
+  p2 = 2121
+  p3 = https%3a%2f%2fsome.org%3fp1%3d10%26p2%3d20
+
+*** 4
+Url: http://www.iitk.ac.in?p1=1&p2=2
+Host: www.iitk.ac.in
+Depth = 3
+Parameters:
+  p1 = 1
+  p2 = 2
+
+*** 5
+Url: https://some.org?p1=10&p2=20
+Host: some.org
+Depth = 3
+Parameters:
+  p1 = 10
+  p2 = 20
+

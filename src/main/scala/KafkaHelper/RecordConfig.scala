@@ -4,14 +4,12 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import org.apache.avro.Schema
-
+import scala.util.parsing.json.JSON
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 import scala.io.Source//.JSON
 
 class RecordConfig(val schemaRegistryUrl: String) {
-
-  import scala.util.parsing.json.JSON
 
   def getSchemaString(strOrg: String): String = {
     val startIndex = strOrg.indexOf("{\"type\":")
